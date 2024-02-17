@@ -1,6 +1,8 @@
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css');
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
-@font-face {
+export const GlobalStyle = createGlobalStyle`
+  @font-face {
   font-family: 'Pretendard';
   font-weight: 100;
   font-style: normal;
@@ -106,64 +108,72 @@
     url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Black.ttf') format('truetype');
   font-display: swap;
 }
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+  
+  ${reset}
+  #root,
+  body,
+  html{
+    margin: 0 auto;
+    width: 100%;
+    height: 100vh; 
+    font-family: 'Pretendard', sans-serif;
+  }
+  
+  /* .scroll::-webkit-scrollbar {
+  display: none;
+  } */
 
-html,
-body {
-  font-family: 'Pretendard', sans-serif;
-}
+  /* body::-webkit-scrollbar {
+      display: block;
+      width: 100vw;
+      height: 10px;
+    }
+  body::-webkit-scrollbar-thumb {
+      border: 2px solid transparent;
+      border-radius: 10px;
+      background-clip: padding-box;
+      background-color: #2f3542;
+  }
+  body::-webkit-scrollbar-track {
+      border-radius: 10px;
+      box-shadow: inset 0px 0px 5px white;
+      background-color: grey;
+  } */
 
-body {
-  --2px: 2px;
-  --4px: 4px;
-  --6px: 6px;
-  --8px: 8px;
-  --10px: 10px;
-  --12px: 12px;
-  --14px: 14px;
-  --16px: 16px;
-  --18px: 18px;
-  --20px: 20px;
-  --22px: 22px;
-  --24px: 24px;
-  --26px: 26px;
-  --28px: 28px;
-  --30px: 30px;
-  --32px: 32px;
-  --34px: 34px;
-  --36px: 36px;
-  --38px: 38px;
-  --40px: 40px;
-  --42px: 42px;
-  --44px: 44px;
-  --46px: 46px;
-  --48px: 48px;
-  --50px: 50px;
-  --52px: 52px;
-  --54px: 54px;
-  --56px: 56px;
-  --58px: 58px;
-  --60px: 60px;
-  --gray100: #343a40;
-  --gray200: #adb5bd;
-  --green100: #3eb489;
-  word-break: keep-all;
-  color: var(--gray100);
+  html {
+    font-size: 62.5%;
+  }
+
+  button {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: inherit;
+    cursor: pointer;
+    padding: 0;
+    overflow: visible;
+  }
+
+  * {
+    box-sizing: border-box;
+    word-break: keep-all;
+  }
+
+  code {
+    overflow-x: scroll;
+    line-height: 1.5;
+    * {
+      white-space: normal;
+      word-break: normal;
+    }
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+*::marker {
+	font-size: 1.8rem;
 }
-a {
-  text-decoration: none;
-  color: inherit;
-}
-button {
-  border: none;
-  border-radius: 8px;
-  background: transparent;
-  cursor: pointer;
-  padding: var(--8px) var(--10px);
-  font-size: var(--16px);
-  font-weight: 600;
-}
+`;
