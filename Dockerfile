@@ -1,41 +1,26 @@
-FROM node:18-alpine AS base
+FROM node:20-slim AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 COPY . /app
 WORKDIR /app
-# Install dependencies only when needed
-FROM base AS deps
-RUN apk add --no-cache libc6-compat
-WORKDIR /usr/src/app
 
-# Install dependencies based on the preferred package manager
+FROM base AS prod-deps
+WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
-RUN rm -rf ./.next/cache
 RUN pnpm install
 
-# Rebuild the source code only when needed
-FROM base AS builder
-WORKDIR /usr/src/app
+FROM base AS build
+WORKDIR /app
 COPY . .
-RUN pnpm build
+COPY --from=prod-deps /app/node_modules ./node_modules
+RUN pnpm run build
+RUN pnpm prune --prod
 
-# Production image, copy all the files and run next
-FROM base AS runner
-WORKDIR /usr/src/app
-
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-COPY --from=builder /usr/src/app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /usr/src/app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /usr/src/app/.next/static ./.next/static
-
-USER nextjs
-
+FROM base AS deploy
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/dist ./dist/
 EXPOSE 3000
+CMD [ "node", "dist/main.js" ]
 
-ENV PORT 3000
 
-CMD ["node", "server.js"]
