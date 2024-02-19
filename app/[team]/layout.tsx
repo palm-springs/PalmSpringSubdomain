@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { getBlogHeaderInfo } from '@/apis/blogHome';
-
 import BlogFooter from '@/components/common/BlogFooter';
 import BlogHeader from '@/components/common/BlogHeader';
+
 import NotFound from '../not-found';
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 const BlogHomeLayout = async ({ children, params }: { children: React.ReactElement; params: { team: string } }) => {
   const blogHeaderInfoRes = await getBlogHeaderInfo(params.team);
 

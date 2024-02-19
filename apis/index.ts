@@ -1,9 +1,9 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance } from 'axios';
 
 const client: AxiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+  baseURL: process.env.BASE_URL,
 });
 
 export default client;
 
-export const runtime = "edge";
+// export const runtime = "edge";

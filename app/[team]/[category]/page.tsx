@@ -10,7 +10,7 @@ type Props = {
   params: { team: string; category: string };
 };
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 export async function generateMetadata({ params }: Props): Promise<Metadata | null> {
   const team = params.team;

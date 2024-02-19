@@ -6,12 +6,13 @@ import { Metadata } from 'next';
 import { getMetaBlogInfo } from '@/apis/blog';
 import { getBlogArticleDetail, getBlogArticleList, getBlogCategoryList, getBlogMainImg } from '@/apis/blogHome';
 import ArticleContainer from '@/components/blog/ui/ArticleContainer';
+
 import NotFound from '../not-found';
 
 type Props = {
   params: { team: string };
 };
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 // 메타데이터 끼면 에러생김 --> 공문 보고 다시 해보기
 export async function generateMetadata({ params }: Props): Promise<Metadata | null> {

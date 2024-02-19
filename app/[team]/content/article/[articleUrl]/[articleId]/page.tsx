@@ -8,7 +8,7 @@ type Props = {
   params: { team: string; articleUrl: string; articleId: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 export async function generateMetadata({ params }: Props): Promise<Metadata | null> {
   const team = params.team;

@@ -4,7 +4,7 @@
 
 import { getMetaBlogInfo } from '@/apis/blog';
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 export const alt = 'About Acme';
 export const size = {
   width: 1200,
