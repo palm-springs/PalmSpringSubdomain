@@ -13,6 +13,7 @@ WORKDIR /usr/src/app
 COPY package.json pnpm-lock.yaml ./
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 RUN rm -rf ./.next/cache
+RUN pnpm install
 
 # Rebuild the source code only when needed
 FROM base AS builder
