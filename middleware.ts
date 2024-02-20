@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+import { DOMAIN_NAME } from './constants/palmspringInfo';
+
 const HTTP_PROTOCOL = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-const DOMAIN_NAME = process.env.NODE_ENV === 'development' ? 'localhost:3000' : 'palms.blog';
 
 export const middleware = (request: NextRequest) => {
   const hostArray = request.headers.get('host')?.split('.');
