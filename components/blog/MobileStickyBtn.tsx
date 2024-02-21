@@ -2,12 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { DOMAIN_NAME } from '@/constants/palmspringInfo';
 import { MobileBtnLogo } from '@/public/icons';
 
 const MobileStickyBtn = () => {
   return (
-    <BtnContainer href={`https://${DOMAIN_NAME}/`}>
+    <BtnContainer href={`https://${process.env.NEXT_PUBLIC_DOMAIN_NAME}`}>
       <BtnWrapper>
         <MobileBtnLogo />
         Built with Palmspring
@@ -40,7 +39,9 @@ const BtnContainer = styled(Link)`
   bottom: 2.4rem;
 
   border-radius: 1rem;
-  box-shadow: 0px 8px 10px 0px rgba(90, 103, 117, 0.14), 0px 1px 5px 0px rgba(90, 103, 117, 0.1);
+  box-shadow:
+    0px 8px 10px 0px rgba(90, 103, 117, 0.14),
+    0px 1px 5px 0px rgba(90, 103, 117, 0.1);
   background: rgba(255, 255, 255, 0.8);
 
   /* stylelint-disable-next-line property-no-vendor-prefix */
