@@ -1,6 +1,6 @@
 // import { ImageResponse } from 'next/server';
 
-// import { ImageResponse } from 'next/og';
+import { ImageResponse } from 'next/og';
 
 import { getMetaBlogInfo } from '@/apis/blog';
 
@@ -21,39 +21,39 @@ export default async function Image({ params }: { params: { team: string } }) {
     ImageUrl = post.data.metaThumbnail;
   }
 
-  const urlToFile = async (url: string) => await fetch(url).then((res) => res.blob());
+  // const urlToFile = async (url: string) => await fetch(url).then((res) => res.blob());
 
-  const imgBlob = await urlToFile(ImageUrl);
+  // const imgBlob = await urlToFile(ImageUrl);
 
-  return imgBlob;
+  // return imgBlob;
 
-  // return new ImageResponse(
-  //   (
-  //     <div
-  //       style={{
-  //         width: '100%',
-  //         height: '100%',
-  //         display: 'flex',
-  //         alignItems: 'center',
-  //         justifyContent: 'center',
-  //       }}>
-  //       <img
-  //         src={ImageUrl}
-  //         style={{
-  //           position: 'absolute',
-  //           top: 0,
-  //           right: 0,
-  //           bottom: 0,
-  //           left: 0,
-  //           width: '100%',
-  //           objectFit: 'cover',
-  //         }}
-  //         alt=""
-  //       />
-  //     </div>
-  //   ),
-  //   {
-  //     ...size,
-  //   },
-  // );
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <img
+          src={ImageUrl}
+          style={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+            width: '100%',
+            objectFit: 'cover',
+          }}
+          alt=""
+        />
+      </div>
+    ),
+    {
+      ...size,
+    },
+  );
 }
