@@ -4,12 +4,12 @@ import React from 'react';
 import { useParams } from 'next/navigation';
 import styled from 'styled-components';
 
+import { getBlogArticleList } from '@/apis/blogHome';
 import LoadingLottie from '@/components/common/ui/LoadingLottie';
 import useCheckMobile from '@/hooks/useCheckMobile';
+import { ArticleData } from '@/types/article';
 
 import ArticleBox from './ArticleBox';
-import { getBlogArticleList } from '@/apis/blogHome';
-import { ArticleData } from '@/types/article';
 
 interface RecommendProps {
   data: ArticleData[];
@@ -23,7 +23,6 @@ const Recommend = (props: RecommendProps) => {
 
   if (!data) return <LoadingLottie width={5} height={5} fit />;
 
-  console.log('1111111111111111', data);
   const filteredData = data.filter(({ id }) => {
     return id !== Number(articleId);
   });
