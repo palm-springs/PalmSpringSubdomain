@@ -26,16 +26,16 @@ jobs:
           touch .env
           echo BASE_URL=${{ secrets.BASE_URL }} >> .env
           echo NODE_ENV=production >> .env
-          echo NEXT_PUBLIC_DOMAIN_NAME=palms.blog >> .env
+          echo NEXT_PUBLIC_DOMAIN_NAME=${{ secrets.NEXT_PUBLIC_DOMAIN_NAME }} >> .env
 
           cat .env
 
       - name: Push New ECR
         run: |
           aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin ${{ secrets.AWS_USER_ID }}.dkr.ecr.ap-northeast-2.amazonaws.com
-          docker build . --platform linux/amd64 -t palmspring-client
-          docker tag palmspring-client:latest ${{ secrets.AWS_USER_ID }}.dkr.ecr.ap-northeast-2.amazonaws.com/palmspring-client:latest
-          docker push ${{ secrets.AWS_USER_ID }}.dkr.ecr.ap-northeast-2.amazonaws.com/palmspring-client:latest
+          docker build . --platform linux/amd64 -t palmspring-subdomain
+          docker tag palmspring-subdomain:latest ${{ secrets.AWS_USER_ID }}.dkr.ecr.ap-northeast-2.amazonaws.com/palmspring-subdomain:latest
+          docker push ${{ secrets.AWS_USER_ID }}.dkr.ecr.ap-northeast-2.amazonaws.com/palmspring-subdomain:latest
 
       - name: 버전 정보 추출
         run: echo "##[set-output name=version;]$(echo '${{ github.event.head_commit.message }}' | egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')"
