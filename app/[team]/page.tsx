@@ -53,9 +53,10 @@ const BlogMainPage = async ({ params }: { params: { team: string } }) => {
 
   const { data: articleListData } = blogArticleRes;
 
-  const IndivContentId = articleListData[0].id;
+  const IndivContentId = articleListData.length > 0 ? articleListData[0].id : '';
 
-  const singleArticleDetail = await getBlogArticleDetail(params.team, IndivContentId);
+  const singleArticleDetail =
+    articleListData.length > 0 ? await getBlogArticleDetail(params.team, IndivContentId) : null;
 
   return (
     <ArticleContainer

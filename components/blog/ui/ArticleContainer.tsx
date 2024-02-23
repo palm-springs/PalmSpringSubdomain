@@ -25,7 +25,7 @@ interface ArticleContainerProps {
   description: string | null;
   blogName: string;
   filteredCategoryList: Response<CategoryListProps[]>;
-  singleArticleDetail: Response<ContentProps>;
+  singleArticleDetail: Response<ContentProps> | null;
 }
 
 const ArticleContainer = (props: ArticleContainerProps) => {
