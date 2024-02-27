@@ -22,7 +22,7 @@ import CategoryBtnBar from './CategoryBtnBar';
 interface ArticleListWithThumbnailProps {
   articleList: ArticleData[];
   filteredCategoryList: Response<CategoryListProps[]>;
-  singleArticleDetail: Response<ContentProps>;
+  singleArticleDetail: Response<ContentProps> | null;
   literalList: string[];
 }
 
@@ -30,7 +30,7 @@ const ArticleListWithThumbnail = (props: ArticleListWithThumbnailProps) => {
   const { articleList, filteredCategoryList, singleArticleDetail, literalList } = props;
   const { category } = useParams();
 
-  const categoryName = decodeURI(category);
+  const categoryName = decodeURI(category as string);
 
   const FilteredArticleList = articleList.filter(
     ({ articleCategory }) => articleCategory.categoryName === categoryName,
