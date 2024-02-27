@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | nu
   const pageUrl = params.pageUrl;
   const pageId = params.pageId;
 
-  const product = await getBlogPageDetail(team, pageId);
+  const product = await getBlogPageDetail(team, pageUrl);
 
   if (!product) return null;
 
