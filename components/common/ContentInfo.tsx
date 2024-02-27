@@ -17,7 +17,7 @@ interface ContentInfoProps {
     title: string;
     description?: string | null;
     teamMember?: {
-      id: number;
+      id: string;
       thumbnail: string | null;
       name: string;
       job: string;

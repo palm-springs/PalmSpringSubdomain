@@ -76,7 +76,7 @@ export const getBlogArticleDetail = async (blogUrl: string, articleId: number) =
 };
 
 //블로그용 글쓴이 정보 가져오기
-export const getBlogAuthorDetail = async (blogUrl: string, memberId: number) => {
+export const getBlogAuthorDetail = async (blogUrl: string, memberId: string) => {
   const { data } = await client.get<Response<AuthorInfoProps>>(`/api/v2/view/author/${blogUrl}/detail/${memberId}`);
   return data;
 };

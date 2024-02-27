@@ -37,7 +37,7 @@ export interface TempSavedListProps {
   id: number;
   title: string;
   teamMemberResponseDto: {
-    id: number;
+    id: string;
     name: string;
     job: string;
     createdAt: string;

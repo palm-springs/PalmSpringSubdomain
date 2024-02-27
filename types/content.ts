@@ -3,7 +3,7 @@ export interface ContentProps {
   title: string;
   description: string;
   teamMember: {
-    id: number;
+    id: string;
     thumbnail: string | null;
     name: string;
     job: string;
