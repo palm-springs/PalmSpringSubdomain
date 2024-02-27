@@ -2,7 +2,7 @@
 
 import { ImageResponse } from 'next/og';
 
-import { getBlogArticleDetail } from '@/apis/blogHome';
+import { getBlogPageDetail } from '@/apis/blogHome';
 
 // export const runtime = 'edge';
 export const alt = 'About Acme';
@@ -12,8 +12,8 @@ export const size = {
 };
 export const contentType = 'image/png';
 
-export default async function Image({ params }: { params: { team: string; articleId: string } }) {
-  const post = await getBlogArticleDetail(params.team, Number(params.articleId));
+export default async function Image({ params }: { params: { team: string; pageId: string } }) {
+  const post = await getBlogPageDetail(params.team, params.pageId);
   let ImageUrl =
     'https://github.com/palm-springs/PalmSpringClient/assets/108226647/bc6ac5c7-266f-4495-ad67-fc2b76a33576';
 
