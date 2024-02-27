@@ -25,10 +25,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | nu
 
   return {
     alternates: {
-      canonical: `/${team}/content/article/${pageUrl}/${pageId}`,
+      canonical: `/${team}/content/page/${pageUrl}/${pageId}`,
     },
     title,
-
     openGraph: {
       title,
       type: 'website',

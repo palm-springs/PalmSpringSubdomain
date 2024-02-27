@@ -12,8 +12,8 @@ export const size = {
 };
 export const contentType = 'image/png';
 
-export default async function Image({ params }: { params: { team: string; pageId: string } }) {
-  const post = await getBlogPageDetail(params.team, params.pageId);
+export default async function Image({ params }: { params: { team: string; pageUrl: string } }) {
+  const post = await getBlogPageDetail(params.team, params.pageUrl);
   let ImageUrl =
     'https://github.com/palm-springs/PalmSpringClient/assets/108226647/bc6ac5c7-266f-4495-ad67-fc2b76a33576';
 
