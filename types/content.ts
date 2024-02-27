@@ -1,14 +1,15 @@
 export interface ContentProps {
   thumbnail: string;
   title: string;
-  description: string;
-  teamMember: {
+  description?: string;
+  teamMember?: {
     id: string;
-    thumbnail: string | null;
+    thumbnail: string;
     name: string;
     job: string;
     createdAt: string;
   };
   content: string;
   images: string[] | null;
+  isArticle: boolean;
 }

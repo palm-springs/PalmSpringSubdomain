@@ -86,3 +86,9 @@ export const postSubscriber = async (requestBody: subscribeData) => {
   const { data } = await client.post(`/api/v2/view/subscribe`, requestBody);
   return data;
 };
+
+// 아티클 & 페이지 content 상세 정보 가져오기
+export const getContentDetail = async (blogUrl: string, contentUrl: string) => {
+  const { data } = await client.get<Response<ContentProps>>(`/api/v2/view/${blogUrl}?contentsUrl=${contentUrl}`);
+  return data;
+};
