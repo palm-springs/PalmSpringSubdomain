@@ -12,6 +12,7 @@ export const middleware = (request: NextRequest) => {
       new URL(`${HTTP_PROTOCOL}://${subdomain}.${process.env.NEXT_PUBLIC_DOMAIN_NAME}`, request.url),
     );
   } else {
+    console.log('logging subdomain', host);
     if (host === 'srookie.palmsummer.site') {
       return NextResponse.rewrite(new URL(`/official${request.nextUrl.clone().pathname}`, request.url));
     }
