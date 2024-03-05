@@ -138,6 +138,7 @@ const LinkBtn = styled.button`
   border-radius: 0.8rem;
   background-color: ${({ theme }) => theme.colors.grey_200};
   padding: 1rem 2rem;
+  width: 17.2rem;
   height: 3.6rem;
 
   color: ${({ theme }) => theme.colors.grey_900};
