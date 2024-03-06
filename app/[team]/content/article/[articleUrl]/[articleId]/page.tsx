@@ -2,6 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 
 import { getBlogArticleDetail, getBlogArticleList } from '@/apis/blogHome';
+import NotFound from '@/app/not-found';
 import BlogMeta from '@/components/blog/BlogMeta';
 
 type Props = {
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | nu
 
   const product = await getBlogArticleDetail(team, Number(articleId));
 
-  if (!product) return null;
+  if (!product || !product.data) return null;
 
   const {
     data: { title, description },
@@ -46,7 +47,8 @@ const ContentPage = async ({ params }: ContentPageProps) => {
 
   const recommendedArticles = await getBlogArticleList(params.team, '');
 
-  if (!blogArticleDetailRes || !recommendedArticles) return null;
+  if (!blogArticleDetailRes || !recommendedArticles || !blogArticleDetailRes.data || !recommendedArticles.data)
+    return <NotFound />;
 
   return <BlogMeta product={blogArticleDetailRes.data} recommendedArticles={recommendedArticles.data} />;
 };

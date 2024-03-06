@@ -2,6 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 
 import { getBlogPageDetail } from '@/apis/blogHome';
+import NotFound from '@/app/not-found';
 import PageTemplate from '@/components/content/ui/PageTemplate';
 
 type Props = {
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | nu
 
   const product = await getBlogPageDetail(team, pageUrl);
 
-  if (!product) return null;
+  if (!product || !product.data) return null;
 
   const {
     data: { title },
@@ -42,7 +43,7 @@ type ContentPageProps = {
 // export const runtime = 'edge';
 const ContentPage = async ({ params }: ContentPageProps) => {
   const blogPageDetailRes = await getBlogPageDetail(params.team, params.pageUrl);
-  if (!blogPageDetailRes) return null;
+  if (!blogPageDetailRes || !blogPageDetailRes.data) return <NotFound />;
 
   return <PageTemplate data={blogPageDetailRes.data} />;
 };

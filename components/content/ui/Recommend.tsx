@@ -4,7 +4,6 @@ import React from 'react';
 import { useParams } from 'next/navigation';
 import styled from 'styled-components';
 
-import { getBlogArticleList } from '@/apis/blogHome';
 import LoadingLottie from '@/components/common/ui/LoadingLottie';
 import useCheckMobile from '@/hooks/useCheckMobile';
 import { ArticleData } from '@/types/article';
@@ -17,7 +16,7 @@ interface RecommendProps {
 
 const Recommend = (props: RecommendProps) => {
   const { data } = props;
-  const { team, articleId } = useParams();
+  const { articleId } = useParams();
 
   const MOBILE = useCheckMobile();
 
