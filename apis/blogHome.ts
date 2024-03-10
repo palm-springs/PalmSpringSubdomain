@@ -40,8 +40,15 @@ export const getBlogMainImg = async (blogUrl: string) => {
 
 //블로그용 카테고리 가져오기 - 반영 완 - 새로 생김 -b
 export const getBlogCategoryList = async (blogUrl: string) => {
-  const { data } = await client.get<Response<CategoryListProps[]>>(`/api/v2/view/category/${blogUrl}/list`);
-  return data;
+  try {
+    const { data } = await client.get<Response<CategoryListProps[]>>(`/api/v2/view/category/${blogUrl}/list`);
+    return data;
+  } catch (err) {
+    if (isAxiosError(err)) {
+      return err.response?.data;
+    }
+    return;
+  }
 };
 
 //블로그용 아티클 리스트 가져오기 - 반영 완 -b
@@ -63,22 +70,43 @@ export const getBlogArticleList = async (blogUrl: string, categoryId: string | n
 
 //블로그용 페이지 상세 정보 가져오기 -b
 export const getBlogPageDetail = async (blogUrl: string, pageUrl: string) => {
-  const { data } = await client.get<Response<PageData>>(`/api/v2/view/page/${blogUrl}/detail?pageUrl=${pageUrl}`);
-  return data;
+  try {
+    const { data } = await client.get<Response<PageData>>(`/api/v2/view/page/${blogUrl}/detail?pageUrl=${pageUrl}`);
+    return data;
+  } catch (err) {
+    if (isAxiosError(err)) {
+      return err.response?.data;
+    }
+    return null;
+  }
 };
 
 //블로그용 아티클 상세 정보 가져오기 -b
 export const getBlogArticleDetail = async (blogUrl: string, articleId: number) => {
-  const { data } = await client.get<Response<ContentProps>>(
-    `/api/v2/view/article/${blogUrl}/detail?articleId=${articleId}`,
-  );
-  return data;
+  try {
+    const { data } = await client.get<Response<ContentProps>>(
+      `/api/v2/view/article/${blogUrl}/detail?articleId=${articleId}`,
+    );
+    return data;
+  } catch (err) {
+    if (isAxiosError(err)) {
+      return err.response?.data;
+    }
+    return null;
+  }
 };
 
 //블로그용 글쓴이 정보 가져오기
-export const getBlogAuthorDetail = async (blogUrl: string, memberId: string) => {
-  const { data } = await client.get<Response<AuthorInfoProps>>(`/api/v2/view/author/${blogUrl}/detail/${memberId}`);
-  return data;
+export const getBlogAuthorDetail = async (blogUrl: string, memberId: number) => {
+  try {
+    const { data } = await client.get<Response<AuthorInfoProps>>(`/api/v2/view/author/${blogUrl}/detail/${memberId}`);
+    return data;
+  } catch (err) {
+    if (isAxiosError(err)) {
+      return err.response?.data;
+    }
+    return null;
+  }
 };
 
 //뉴스레터 구독하기 post

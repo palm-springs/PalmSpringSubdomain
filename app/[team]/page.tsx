@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | nu
   const team = params.team;
   const product = await getMetaBlogInfo(team);
 
-  if (!product) return null;
+  if (!product || !product.data) return null;
 
   const {
     data: { metaName: title, metaDescription: description },

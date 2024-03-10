@@ -2,6 +2,7 @@
 import React from 'react';
 
 import { getBlogAuthorDetail } from '@/apis/blogHome';
+import NotFound from '@/app/not-found';
 import AuthorPageTemplate from '@/components/author/AuthorPageTemplate';
 
 type Props = {
@@ -12,8 +13,8 @@ type Props = {
 const AuthorPage = async ({ params }: Props) => {
   const { team, authorId } = params;
 
-  const blogAuthorRes = await getBlogAuthorDetail(team, authorId);
-  if (!blogAuthorRes) return null;
+  const blogAuthorRes = await getBlogAuthorDetail(team, authorIdNum);
+  if (!blogAuthorRes || !blogAuthorRes.data) return <NotFound />;
 
   const { data } = blogAuthorRes;
 

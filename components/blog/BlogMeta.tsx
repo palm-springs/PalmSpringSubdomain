@@ -1,8 +1,8 @@
 import React from 'react';
 
 import ArticleTemplate from '@/components/content/ui/ArticleTemplate';
-import { ContentProps } from '@/types/content';
 import { ArticleData } from '@/types/article';
+import { ContentProps } from '@/types/content';
 
 interface BlogMetaProps {
   product: ContentProps;

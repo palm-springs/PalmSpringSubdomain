@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 const HTTP_PROTOCOL = process.env.NODE_ENV === 'development' ? 'http' : 'https';
 
 export const middleware = (request: NextRequest) => {
+  const host = request.headers.get('host');
   const hostArray = request.headers.get('host')?.split('.');
   const subdomain = hostArray?.[0];
   const pathName = request.nextUrl.clone().pathname;
@@ -11,6 +12,10 @@ export const middleware = (request: NextRequest) => {
       new URL(`${HTTP_PROTOCOL}://${subdomain}.${process.env.NEXT_PUBLIC_DOMAIN_NAME}`, request.url),
     );
   } else {
+    console.log('logging subdomain', host);
+    if (host === 'srookie.palmsummer.site') {
+      return NextResponse.rewrite(new URL(`/official${request.nextUrl.clone().pathname}`, request.url));
+    }
     return NextResponse.rewrite(new URL(`/${subdomain}${request.nextUrl.clone().pathname}`, request.url));
   }
 };

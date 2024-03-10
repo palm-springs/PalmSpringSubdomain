@@ -15,6 +15,8 @@ const nextConfig = {
       },
       { protocol: 'https', hostname: 'lh3.googleusercontent.com' },
       { protocol: 'https', hostname: 'd3u5tnzk5n63kp.cloudfront.net' },
+      { protocol: 'https', hostname: 'github.com' },
+      { protocol: 'https', hostname: 'proxy.nohv.site' },
     ],
   },
   webpack: (config) => {

@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | nu
   const category = decodeURI(params.category);
   const product = await getMetaBlogInfo(team);
 
-  if (!product) return null;
+  if (!product || !product.data) return null;
 
   const {
     data: { metaName: title, metaDescription: description },

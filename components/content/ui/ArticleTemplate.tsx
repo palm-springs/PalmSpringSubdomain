@@ -10,11 +10,11 @@ import Content from '@/components/content/Content';
 import Bar from '@/components/content/ui/Bar';
 import Recommend from '@/components/content/ui/Recommend';
 import useCheckMobile from '@/hooks/useCheckMobile';
+import { ArticleData } from '@/types/article';
 import { ContentProps } from '@/types/content';
 import { createToast } from '@/utils/lib/toast';
 
 import MobileContent from '../MobileContent';
-import { ArticleData } from '@/types/article';
 
 interface ArticleTemplateProps {
   data: ContentProps;
@@ -138,6 +138,7 @@ const LinkBtn = styled.button`
   border-radius: 0.8rem;
   background-color: ${({ theme }) => theme.colors.grey_200};
   padding: 1rem 2rem;
+  width: 17.2rem;
   height: 3.6rem;
 
   color: ${({ theme }) => theme.colors.grey_900};
