@@ -13,7 +13,7 @@ type Props = {
 const AuthorPage = async ({ params }: Props) => {
   const { team, authorId } = params;
 
-  const blogAuthorRes = await getBlogAuthorDetail(team, authorIdNum);
+  const blogAuthorRes = await getBlogAuthorDetail(team, authorId);
   if (!blogAuthorRes || !blogAuthorRes.data) return <NotFound />;
 
   const { data } = blogAuthorRes;

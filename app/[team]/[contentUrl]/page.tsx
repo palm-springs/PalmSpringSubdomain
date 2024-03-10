@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 
 import { getBlogArticleList, getContentDetail } from '@/apis/blogHome';
+import NotFound from '@/app/not-found';
 import BlogMeta from '@/components/blog/BlogMeta';
 import PageTemplate from '@/components/content/ui/PageTemplate';
 
@@ -14,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | nu
 
   const product = await getContentDetail(team, contentUrl);
 
-  if (!product) return null;
+  if (!product || !product.data) return null;
   if (product.data.isArticle === true) {
     const {
       data: { title, description },
@@ -56,12 +57,11 @@ const ContentPage = async ({ params }: { params: { team: string; contentUrl: str
   // content 정보 불러오기
   const contentDetailRes = await getContentDetail(params.team, params.contentUrl);
 
-  if (!contentDetailRes) return null;
+  if (!contentDetailRes || !contentDetailRes.data) return <NotFound />;
 
   // article일 때
   if (contentDetailRes.data.isArticle === true) {
     const recommendedArticles = await getBlogArticleList(params.team, '');
-
     if (!recommendedArticles) return null;
     return <BlogMeta product={contentDetailRes.data} recommendedArticles={recommendedArticles.data} />;
   }

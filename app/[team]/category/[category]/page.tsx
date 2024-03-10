@@ -3,7 +3,7 @@ import React from 'react';
 import { Metadata } from 'next';
 
 import { getMetaBlogInfo } from '@/apis/blog';
-import { getBlogArticleDetail, getBlogArticleList, getBlogCategoryList, getBlogMainImg } from '@/apis/blogHome';
+import { getBlogArticleList, getBlogCategoryList, getBlogMainImg, getContentDetail } from '@/apis/blogHome';
 import ArticleContainer from '@/components/blog/ui/ArticleContainer';
 
 type Props = {
@@ -46,9 +46,9 @@ const CategoryPage = async ({ params }: { params: { team: string } }) => {
 
   const filteredCategoryList = await getBlogCategoryList(params.team);
 
-  const IndivContentId = articleData[0].id;
+  const IndivContentId = articleData[0].articleUrl;
 
-  const singleArticleDetail = await getBlogArticleDetail(params.team, IndivContentId);
+  const singleArticleDetail = await getContentDetail(params.team, IndivContentId);
 
   return (
     <ArticleContainer

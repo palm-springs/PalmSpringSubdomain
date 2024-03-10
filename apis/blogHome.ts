@@ -68,38 +68,10 @@ export const getBlogArticleList = async (blogUrl: string, categoryId: string | n
   }
 };
 
-//블로그용 페이지 상세 정보 가져오기 -b
-export const getBlogPageDetail = async (blogUrl: string, pageUrl: string) => {
-  try {
-    const { data } = await client.get<Response<PageData>>(`/api/v2/view/page/${blogUrl}/detail?pageUrl=${pageUrl}`);
-    return data;
-  } catch (err) {
-    if (isAxiosError(err)) {
-      return err.response?.data;
-    }
-    return null;
-  }
-};
-
-//블로그용 아티클 상세 정보 가져오기 -b
-export const getBlogArticleDetail = async (blogUrl: string, articleId: number) => {
-  try {
-    const { data } = await client.get<Response<ContentProps>>(
-      `/api/v2/view/article/${blogUrl}/detail?articleId=${articleId}`,
-    );
-    return data;
-  } catch (err) {
-    if (isAxiosError(err)) {
-      return err.response?.data;
-    }
-    return null;
-  }
-};
-
 //블로그용 글쓴이 정보 가져오기
-export const getBlogAuthorDetail = async (blogUrl: string, memberId: number) => {
+export const getBlogAuthorDetail = async (blogUrl: string, memberId: string) => {
   try {
-    const { data } = await client.get<Response<AuthorInfoProps>>(`/api/v2/view/author/${blogUrl}/detail/${memberId}`);
+    const { data } = await client.get<Response<AuthorInfoProps>>(`/api/v2/view/author/${blogUrl}/${memberId}`);
     return data;
   } catch (err) {
     if (isAxiosError(err)) {
@@ -117,6 +89,13 @@ export const postSubscriber = async (requestBody: subscribeData) => {
 
 // 아티클 & 페이지 content 상세 정보 가져오기
 export const getContentDetail = async (blogUrl: string, contentUrl: string) => {
-  const { data } = await client.get<Response<ContentProps>>(`/api/v2/view/${blogUrl}?contentsUrl=${contentUrl}`);
-  return data;
+  try {
+    const { data } = await client.get<Response<ContentProps>>(`/api/v2/view/${blogUrl}?contentsUrl=${contentUrl}`);
+    return data;
+  } catch (err) {
+    if (isAxiosError(err)) {
+      return err.response?.data;
+    }
+    return null;
+  }
 };

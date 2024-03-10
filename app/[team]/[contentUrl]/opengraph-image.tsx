@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og';
 
+import { getMetaBlogInfo } from '@/apis/blog';
 import { getContentDetail } from '@/apis/blogHome';
 
 export const alt = 'About Acme';
@@ -16,6 +17,12 @@ export default async function Image({ params }: { params: { team: string; conten
 
   if (post.data.thumbnail !== null && post.data.thumbnail) {
     ImageUrl = post.data.thumbnail;
+  } else {
+    const blogMetaInfo = await getMetaBlogInfo(params.team);
+
+    if (blogMetaInfo.data.metaThumbnail !== null && blogMetaInfo.data.metaThumbnail) {
+      ImageUrl = blogMetaInfo.data.metaThumbnail;
+    }
   }
 
   return new ImageResponse(
