@@ -37,7 +37,7 @@ const PageContentInfo = (props: PageContentInfoProps) => {
           </ContentDetailBox>
         ) : (
           <ContentDetailBox>
-            <Link href={`/content/article/${articleUrl}/${IndivContentId}`}>
+            <Link href={`/${articleUrl}`}>
               <TitleBox className="mobile">{title}</TitleBox>
               {description && <DescriptionBox className="mobile">{description}</DescriptionBox>}
             </Link>
@@ -55,7 +55,7 @@ const PageContentInfo = (props: PageContentInfoProps) => {
           </ContentDetailBox>
         ) : (
           <ContentDetailBox>
-            <Link href={`/content/article/${articleUrl}/${IndivContentId}`}>
+            <Link href={`/${articleUrl}`}>
               <TitleBox>{title}</TitleBox>
               {description && <DescriptionBox>{description}</DescriptionBox>}
             </Link>

@@ -11,10 +11,9 @@ type Props = {
 // export const runtime = 'edge';
 
 const AuthorPage = async ({ params }: Props) => {
-  const team = params.team;
-  const authorIdNum = Number(params.authorId);
+  const { team, authorId } = params;
 
-  const blogAuthorRes = await getBlogAuthorDetail(team, authorIdNum);
+  const blogAuthorRes = await getBlogAuthorDetail(team, authorId);
   if (!blogAuthorRes || !blogAuthorRes.data) return <NotFound />;
 
   const { data } = blogAuthorRes;

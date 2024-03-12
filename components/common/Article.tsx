@@ -5,8 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { ArticleData } from '@/types/article';
 import useGetCategory from '@/hooks/useGetCategory';
+import { ArticleData } from '@/types/article';
 
 interface ArticleProps {
   noHover?: boolean;
@@ -22,7 +22,7 @@ const Article = (props: ArticleProps) => {
   const selectedCategory = useGetCategory();
 
   return (
-    <ArticleContainer href={`/content/article/${articleUrl}/${id}`} className={noHover ? '' : 'hover'}>
+    <ArticleContainer href={`/${articleUrl}`} className={noHover ? '' : 'hover'}>
       <ArticleInfo $thumbnail={thumbnail ?? ''}>
         <EditorInputTitle className="title">{title}</EditorInputTitle>
         <ArticleDescription className="description">{description}</ArticleDescription>

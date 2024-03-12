@@ -1,11 +1,8 @@
-// import { ImageResponse } from 'next/server';
-
 import { ImageResponse } from 'next/og';
 
 import { getMetaBlogInfo } from '@/apis/blog';
-import { getBlogPageDetail } from '@/apis/blogHome';
+import { getContentDetail } from '@/apis/blogHome';
 
-// export const runtime = 'edge';
 export const alt = 'About Acme';
 export const size = {
   width: 1200,
@@ -13,11 +10,10 @@ export const size = {
 };
 export const contentType = 'image/png';
 
-export default async function Image({ params }: { params: { team: string; pageUrl: string } }) {
+export default async function Image({ params }: { params: { team: string; contentUrl: string } }) {
+  const post = await getContentDetail(params.team, params.contentUrl);
   let ImageUrl =
     'https://github.com/palm-springs/PalmSpringClient/assets/108226647/bc6ac5c7-266f-4495-ad67-fc2b76a33576';
-
-  const post = await getBlogPageDetail(params.team, params.pageUrl);
 
   if (post.data.thumbnail !== null && post.data.thumbnail) {
     ImageUrl = post.data.thumbnail;
@@ -28,12 +24,6 @@ export default async function Image({ params }: { params: { team: string; pageUr
       ImageUrl = blogMetaInfo.data.metaThumbnail;
     }
   }
-
-  // const urlToFile = async (url: string) => await fetch(url).then((res) => res.blob());
-
-  // const imgBlob = await urlToFile(ImageUrl);
-
-  // return imgBlob;
 
   return new ImageResponse(
     (

@@ -16,14 +16,14 @@ interface RecommendProps {
 
 const Recommend = (props: RecommendProps) => {
   const { data } = props;
-  const { articleId } = useParams();
+  const { contentUrl } = useParams();
 
   const MOBILE = useCheckMobile();
 
   if (!data) return <LoadingLottie width={5} height={5} fit />;
 
-  const filteredData = data.filter(({ id }) => {
-    return id !== Number(articleId);
+  const filteredData = data.filter(({ articleUrl }) => {
+    return articleUrl !== contentUrl;
   });
 
   const recommendArticle = filteredData.slice(0, 3);

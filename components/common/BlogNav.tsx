@@ -21,9 +21,9 @@ const BlogNav = (props: BlogNavProps) => {
   return (
     <BlogNavContainer>
       {navList &&
-        navList.map(({ navUrl, name, isPage, id }) => (
+        navList.map(({ navUrl, name, isPage }) => (
           <PageBtn key={navUrl}>
-            <Link href={isPage ? `/content/page/${navUrl}/${id}` : `${navUrl}`} target={isPage ? '_self' : '_blank'}>
+            <Link href={isPage ? `/${navUrl}` : `${navUrl}`} target={isPage ? '_self' : '_blank'}>
               {name}
             </Link>
           </PageBtn>
