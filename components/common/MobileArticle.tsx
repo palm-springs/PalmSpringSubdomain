@@ -20,7 +20,7 @@ const MobileArticle = (props: ArticleProps) => {
   const selectedCategory = useGetCategory();
 
   return (
-    <ArticleContainer href={`/content/article/${articleUrl}/${id}`}>
+    <ArticleContainer href={`/${articleUrl}`}>
       {thumbnail && (
         <ArticleThumbnailContainer>
           <ArticleThumbnail src={thumbnail} alt="Article Thumbnail" fill={true} />

@@ -4,7 +4,7 @@ import React from 'react';
 import { Metadata } from 'next';
 
 import { getMetaBlogInfo } from '@/apis/blog';
-import { getBlogArticleDetail, getBlogArticleList, getBlogCategoryList, getBlogMainImg } from '@/apis/blogHome';
+import { getBlogArticleList, getBlogCategoryList, getBlogMainImg, getContentDetail } from '@/apis/blogHome';
 import ArticleContainer from '@/components/blog/ui/ArticleContainer';
 
 import NotFound from '../not-found';
@@ -53,10 +53,9 @@ const BlogMainPage = async ({ params }: { params: { team: string } }) => {
 
   const { data: articleListData } = blogArticleRes;
 
-  const IndivContentId = articleListData.length > 0 ? articleListData[0].id : '';
+  const IndivContentId = articleListData.length > 0 ? articleListData[0].articleUrl : '';
 
-  const singleArticleDetail =
-    articleListData.length > 0 ? await getBlogArticleDetail(params.team, IndivContentId) : null;
+  const singleArticleDetail = articleListData.length > 0 ? await getContentDetail(params.team, IndivContentId) : null;
 
   return (
     <ArticleContainer
