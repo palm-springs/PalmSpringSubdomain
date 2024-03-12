@@ -41,7 +41,7 @@
 |Programming Language|![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)|
 |Data Fetching|![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)|
 |Formatting|![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white) ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white)|
-|Package Manager|![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white)|                                             
+|Package Manager|<img src="https://img.shields.io/badge/PNPM-F69220?style=flat-square&logo=pnpm&logoColor=white">|                                             
 |Text editor|<img width="145" alt="스크린샷 2023-07-12 오후 4 13 18" src="https://github.com/palm-springs/PalmSpringClient/assets/108226647/e6777b1d-3a16-43c2-9e22-2f7676105eb5">|
 |Parsing|<img width="217" alt="스크린샷 2023-07-12 오후 4 16 01" src="https://github.com/palm-springs/PalmSpringClient/assets/108226647/530553fd-1871-4d40-a392-fe19fa375517">|
 |Post message|<img width="217" alt="스크린샷 2023-07-12 오후 4 16 01" src="https://github.com/palm-springs/PalmSpringClient/assets/108226647/980d0f31-f283-45f2-af35-9bdddf674659">
