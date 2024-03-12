@@ -21,7 +21,7 @@ const CategoryBtnBar = (props: CategoryBtnBarProps) => {
     if (MOBILE)
       return (
         <MobileCategoryBtn
-          href={`/${eachCategory}`}
+          href={`/category/${eachCategory}`}
           key={eachCategory}
           className={eachCategory === decodeURI(category) ? 'selected' : ''}>
           {eachCategory}
@@ -30,7 +30,7 @@ const CategoryBtnBar = (props: CategoryBtnBarProps) => {
     else
       return (
         <CategoryBtn
-          href={{ pathname: `/${eachCategory}`, hash: '/' }}
+          href={{ pathname: `/category/${eachCategory}`, hash: '/' }}
           key={eachCategory}
           className={eachCategory === decodeURI(category) ? 'selected' : ''}>
           {eachCategory}
