@@ -17,6 +17,10 @@
 
 ![기능설명](https://github.com/palm-springs/PalmSpringClient/assets/108226647/0baee4a4-05b8-4028-bf9f-56ce9ec366ea)
 
+## 🗂 레포지토리
+대시보드 - <a href="https://github.com/palm-springs/PalmSpringClient">PalmSpringClient</a> <br/>
+<b>블로그(서브도메인) - <a href="https://github.com/palm-springs/PalmSpringSubdomain">PalmSpringSubdomain</a></b><br/>
+
 ## 👩🏻‍💻 팀원 소개
 |김서현|오형근|이시연|장명지|
 |:-:|:-:|:-:|:-:|
