@@ -2,7 +2,9 @@
 
 import React, { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
+import { DiscussionEmbed } from 'disqus-react';
 import Image from 'next/image';
+import { useParams } from 'next/navigation';
 import styled from 'styled-components';
 
 import ContentInfo from '@/components/common/ContentInfo';
@@ -32,6 +34,7 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
   } = props;
 
   const MOBILE = useCheckMobile();
+  const { team, contentUrl } = useParams();
 
   const linkCopiedNotify = createToast({ type: 'NORMAL', message: '링크가 복사되었습니다.', id: 'link copied' });
 
@@ -67,6 +70,7 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
       );
     else
       return (
+      <CommentContainer>
         <ContentPageContainer>
           {thumbnail && <ArticleThumbnail src={thumbnail} alt="article content thumbnail" width={720} height={405} />}
           <ContentInfo contentInfoData={{ title, description, teamMember }} />
@@ -75,6 +79,15 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
           <Bar />
           <Recommend data={recommendedArticles} />
         </ContentPageContainer>
+       {team === '' &&  <DiscussionEmbed
+        shortname='palmspring'
+        config={{
+          url: `https://${team}.palms.blog/${contentUrl}`,
+          identifier : String(contentUrl),
+          title: title,
+        }}
+          /> }
+      </CommentContainer> 
       );
   };
 
@@ -94,6 +107,13 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
 };
 
 export default ArticleTemplate;
+
+const CommentContainer = styled.div`
+& > #disqus_thread {
+margin: 0 auto;
+  width : 72rem;
+}`;
+
 const Blank = styled.div`
   width: 100vw;
   height: 6rem;
