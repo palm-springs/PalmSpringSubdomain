@@ -2,7 +2,7 @@ import { isAxiosError } from 'axios';
 
 import { ArticleData } from '@/types/article';
 import { AuthorInfoProps } from '@/types/author';
-import { HeaderProps, subscribeData } from '@/types/blogHeader';
+import { FooterProps, HeaderProps, subscribeData } from '@/types/blogHeader';
 import { BlogImgProps } from '@/types/blogMainImg';
 import { Response } from '@/types/common';
 import { ContentProps } from '@/types/content';
@@ -22,6 +22,18 @@ export const getBlogHeaderInfo = async (blogUrl: string) => {
       return err.response?.data;
     }
     return;
+  }
+};
+
+//블로그 footer 정보 가져오기
+export const getBlogFooterInfo = async (blogUrl: string) => {
+  try {
+    const { data } = await client.get<Response<FooterProps>>(`/api/v2/view/blog/${blogUrl}/footer`);
+    return data;
+  } catch (err) {
+    if (isAxiosError(err)) {
+      return err.response?.data;
+    }
   }
 };
 
