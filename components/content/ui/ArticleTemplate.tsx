@@ -80,9 +80,9 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
           <Recommend data={recommendedArticles} />
         </ContentPageContainer>
        {team === '' &&  <DiscussionEmbed
-        shortname='palmspring'
+        shortname={process.env.NEXT_PUBLIC_SHORT_NAME}
         config={{
-          url: `https://${team}.palms.blog/${contentUrl}`,
+          url: `https://${team}.${process.env.DOMAIN_NAME}/${contentUrl}`,
           identifier : String(contentUrl),
           title: title,
         }}
