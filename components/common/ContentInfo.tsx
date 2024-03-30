@@ -46,7 +46,7 @@ const ContentInfo = (props: ContentInfoProps) => {
   if (MOBILE)
     return (
       <ContentInfoContainer className="mobile">
-        {ifContent === 'content' ? (
+        {ifContent ? (
           <ContentDetailBox>
             <TitleBox className="mobile">{title}</TitleBox>
             {description && <DescriptionBox className="mobile">{description}</DescriptionBox>}
@@ -82,7 +82,7 @@ const ContentInfo = (props: ContentInfoProps) => {
   else
     return (
       <ContentInfoContainer className={ifContent === 'content' ? 'noHover' : 'hover'}>
-        {ifContent === 'content' ? (
+        {ifContent ? (
           <ContentDetailBox>
             <TitleBox>{title}</TitleBox>
             {description && <DescriptionBox>{description}</DescriptionBox>}
@@ -171,7 +171,7 @@ const WriterNameBox = styled.div`
   ${({ theme }) => theme.fonts.Body2_Regular};
 `;
 
-const TitleBox = styled.article`
+const TitleBox = styled.h1`
   ${({ theme }) => theme.fonts.Title};
 
   display: flex;
