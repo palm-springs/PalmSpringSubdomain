@@ -4,9 +4,9 @@ export interface HeaderProps extends NavListOnly {
 }
 
 export interface FooterProps {
-  ownerName: string;
-  logo: string;
-  footerInfo: string;
+  ownerName: string | null;
+  logo: string | null;
+  footerInfo: string | null;
 }
 
 export interface subscribeData {

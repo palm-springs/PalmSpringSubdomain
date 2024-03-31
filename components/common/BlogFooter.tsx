@@ -16,28 +16,28 @@ const BlogFooter = (props: BlogFooterProps) => {
 
   const MOBILE = useCheckMobile();
 
+  const footerMain = () => {
+    return (
+      <>
+        <CompanyName>{companyName}</CompanyName>
+        <CompanyDetail>{companyDetail}</CompanyDetail>
+        <MadeWithPalms>
+          made with <LandingPageLink href={`https://www.palms.blog/`}>palms.blog</LandingPageLink>
+        </MadeWithPalms>
+      </>
+    );
+  };
+
   if (MOBILE)
     return (
       <FooterContainer>
-        <MobileFooterWrap>
-          <CompanyName>{companyName}</CompanyName>
-          <CompanyDetail>{companyDetail}</CompanyDetail>
-          <MadeWithPalms>
-            made with <LandingPageLink href={`https://www.palms.blog/`}>palms.blog</LandingPageLink>
-          </MadeWithPalms>
-        </MobileFooterWrap>
+        <MobileFooterWrap>{footerMain()}</MobileFooterWrap>
       </FooterContainer>
     );
   else
     return (
       <FooterContainer>
-        <FooterWrapper>
-          <CompanyName>{companyName}</CompanyName>
-          <CompanyDetail>{companyDetail}</CompanyDetail>
-          <MadeWithPalms>
-            made with <LandingPageLink href={`https://www.palms.blog/`}>palms.blog</LandingPageLink>
-          </MadeWithPalms>
-        </FooterWrapper>
+        <FooterWrapper>{footerMain()}</FooterWrapper>
       </FooterContainer>
     );
 };
