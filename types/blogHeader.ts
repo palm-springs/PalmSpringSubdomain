@@ -3,6 +3,12 @@ export interface HeaderProps extends NavListOnly {
   blogName: string;
 }
 
+export interface FooterProps {
+  ownerName: string | null;
+  logo: string | null;
+  footerInfo: string | null;
+}
+
 export interface subscribeData {
   email: string;
   blogUrl: string;
