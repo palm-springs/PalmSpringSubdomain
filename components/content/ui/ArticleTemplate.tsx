@@ -70,24 +70,26 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
       );
     else
       return (
-      <CommentContainer>
-        <ContentPageContainer>
-          {thumbnail && <ArticleThumbnail src={thumbnail} alt="article content thumbnail" width={720} height={405} />}
-          <ContentInfo contentInfoData={{ title, description, teamMember }} />
-          <Content content={content} />
-          <LinkBtn onClick={copyCurrentUrl}>아티클 링크 복사하기</LinkBtn>
-          <Bar />
-          <Recommend data={recommendedArticles} />
-        </ContentPageContainer>
-       {team === '' &&  <DiscussionEmbed
-        shortname={process.env.NEXT_PUBLIC_SHORT_NAME}
-        config={{
-          url: `https://${team}.${process.env.DOMAIN_NAME}/${contentUrl}`,
-          identifier : String(contentUrl),
-          title: title,
-        }}
-          /> }
-      </CommentContainer> 
+        <CommentContainer>
+          <ContentPageContainer>
+            {thumbnail && <ArticleThumbnail src={thumbnail} alt="article content thumbnail" width={720} height={405} />}
+            <ContentInfo contentInfoData={{ title, description, teamMember }} />
+            <Content content={content} />
+            <LinkBtn onClick={copyCurrentUrl}>아티클 링크 복사하기</LinkBtn>
+            <Bar />
+            <Recommend data={recommendedArticles} />
+          </ContentPageContainer>
+          {team === 'forweber' && (
+            <DiscussionEmbed
+              shortname={process.env.NEXT_PUBLIC_SHORT_NAME}
+              config={{
+                url: `https://${team}.${process.env.DOMAIN_NAME}/${contentUrl}`,
+                identifier: String(contentUrl),
+                title: title,
+              }}
+            />
+          )}
+        </CommentContainer>
       );
   };
 
@@ -109,10 +111,11 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
 export default ArticleTemplate;
 
 const CommentContainer = styled.div`
-& > #disqus_thread {
-margin: 0 auto;
-  width : 72rem;
-}`;
+  & > #disqus_thread {
+    margin: 0 auto;
+    width: 72rem;
+  }
+`;
 
 const Blank = styled.div`
   width: 100vw;
