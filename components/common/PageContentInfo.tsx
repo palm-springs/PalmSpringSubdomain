@@ -30,7 +30,7 @@ const PageContentInfo = (props: PageContentInfoProps) => {
   if (MOBILE)
     return (
       <ContentInfoContainer className="mobile">
-        {ifContent === 'content' ? (
+        {ifContent ? (
           <ContentDetailBox>
             <TitleBox className="mobile">{title}</TitleBox>
             {description && <DescriptionBox className="mobile">{description}</DescriptionBox>}
@@ -48,7 +48,7 @@ const PageContentInfo = (props: PageContentInfoProps) => {
   else
     return (
       <ContentInfoContainer className={ifContent === 'content' ? 'noHover' : 'hover'}>
-        {ifContent === 'content' ? (
+        {ifContent ? (
           <ContentDetailBox>
             <TitleBox>{title}</TitleBox>
             {description && <DescriptionBox>{description}</DescriptionBox>}
@@ -94,7 +94,7 @@ const ContentInfoContainer = styled.section`
   }
 `;
 
-const TitleBox = styled.article`
+const TitleBox = styled.h1`
   ${({ theme }) => theme.fonts.Title};
 
   display: flex;
