@@ -27,6 +27,7 @@ jobs:
           echo BASE_URL=${{ secrets.BASE_URL }} >> .env
           echo NODE_ENV=production >> .env
           echo NEXT_PUBLIC_DOMAIN_NAME=${{ secrets.NEXT_PUBLIC_DOMAIN_NAME }} >> .env
+          echo NEXT_PUBLIC_SHORT_NAME=${{ secrets.NEXT_PUBLIC_SHORT_NAME }} >> .env
 
           cat .env
 
