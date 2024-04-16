@@ -68,7 +68,11 @@ const ContentPage = async ({ params }: { params: { team: string; contentUrl: str
 
   // page일 때
   else if (contentDetailRes.data.isArticle === false) {
-    return <PageTemplate data={contentDetailRes.data} />;
+    return (
+      <>
+        <PageTemplate data={contentDetailRes.data} />
+      </>
+    );
   }
 };
 
