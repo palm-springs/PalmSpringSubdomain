@@ -14,8 +14,8 @@ import { CategoryListProps } from '@/types/dashboard';
 import { getLiteralCategoryList } from '@/utils/getLiteralCategoryList';
 
 import BlogImg from '../BlogImg';
-import MobileStickyBtn from '../MobileStickyBtn';
 
+// import MobileStickyBtn from '../MobileStickyBtn';
 import ArticleListWithThumbnail from './ArticleListWithThumbnail';
 import CategoryBtnBar from './CategoryBtnBar';
 
@@ -47,7 +47,7 @@ const ArticleContainer = (props: ArticleContainerProps) => {
           <CategoryBtnWrapper>
             <CategoryBtnBar LiteralList={LiteralList} />
           </CategoryBtnWrapper>
-          {MOBILE && <MobileStickyBtn />}
+          {/* {MOBILE && <MobileStickyBtn />} */}
         </BlogImgContainer>
       );
     } else {
@@ -55,7 +55,7 @@ const ArticleContainer = (props: ArticleContainerProps) => {
       return (
         <BlogImgContainer>
           <BlogImg thumbnail={thumbnail} description={description} />
-          {MOBILE && <MobileStickyBtn />}
+          {/* {MOBILE && <MobileStickyBtn />} */}
         </BlogImgContainer>
       );
     }
@@ -69,7 +69,7 @@ const ArticleContainer = (props: ArticleContainerProps) => {
           <DefaultTitle className={MOBILE ? 'mobile' : ''}>{blogName}</DefaultTitle>
           <DefaultSubText className={MOBILE ? 'mobile' : ''}>등록된 글이 없습니다</DefaultSubText>
         </DefaultTextContainer>
-        {MOBILE && <MobileStickyBtn />}
+        {/* {MOBILE && <MobileStickyBtn />} */}
       </>
     );
 
@@ -95,7 +95,7 @@ const ArticleContainer = (props: ArticleContainerProps) => {
         <ArticleWrapper>
           <ArticleList articleList={articleListData} />
         </ArticleWrapper>
-        {MOBILE && <MobileStickyBtn />}
+        {/* {MOBILE && <MobileStickyBtn />} */}
       </>
     );
 
