@@ -89,6 +89,16 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
               }}
             />
           )}
+          {team === 'init' && (
+            <DiscussionEmbed
+              shortname={process.env.NEXT_PUBLIC_SHORT_NAME}
+              config={{
+                url: `https://${team}.${process.env.DOMAIN_NAME}/${contentUrl}`,
+                identifier: String(contentUrl),
+                title: title,
+              }}
+            />
+          )}
         </CommentContainer>
       );
   };
