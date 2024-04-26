@@ -57,9 +57,12 @@ export const MobileTextEditorStyle = styled.div`
       border-radius: 0.5rem;
       background: ${({ theme }) => theme.colors.grey_100};
       padding: 1.6rem 2rem;
-      width: calc(100vw - 4rem);
+      width: 100%;
+      /* width: calc(100vw - 4rem); */
+      max-width: calc(100vw - 4rem);
       /* 이거 코드블럭만 피라모노! */
-      white-space: pre-wrap;
+      /* white-space: pre-wrap; */
+      overflow-x: scroll;
       word-break: break-all;
       color: #383a41;
       font-family: 'Fira Mono', monospace;
@@ -176,6 +179,10 @@ export const MobileTextEditorStyle = styled.div`
 
       & > ul > li {
         width: calc(100vw - 14rem);
+      }
+
+      & > ul > li > ul > li {
+        width: calc(100vw - 16rem);
       }
     }
 
