@@ -15,7 +15,6 @@ import { Response } from '@/types/common';
 import { ContentProps } from '@/types/content';
 import { CategoryListProps } from '@/types/dashboard';
 
-// import MobileStickyBtn from '../MobileStickyBtn';
 import CategoryBtnBar from './CategoryBtnBar';
 
 interface ArticleListWithThumbnailProps {
@@ -53,7 +52,6 @@ const ArticleListWithThumbnail = (props: ArticleListWithThumbnailProps) => {
         <ArticleWrapper>
           <ArticleList articleList={category ? FilteredArticleList : articleList} />
         </ArticleWrapper>
-        {/* {MOBILE && <MobileStickyBtn />} */}
       </>
     );
   else
