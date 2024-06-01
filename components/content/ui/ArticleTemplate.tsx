@@ -56,6 +56,7 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
               alt="article content thumbnail"
               width={720}
               height={405}
+              priority
             />
           ) : (
             <Blank />

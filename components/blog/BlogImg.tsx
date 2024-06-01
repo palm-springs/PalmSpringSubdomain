@@ -22,7 +22,7 @@ const BlogImg = (props: BlogMainImgProps) => {
       {thumbnail && (
         <>
           <BlogImgWrapper className={MOBILE ? 'mobile' : ''}>
-            <Image src={thumbnail} alt="blog main" fill={true} />
+            <Image src={thumbnail} alt="blog main" fill={true} priority />
             {description && <BlogInfo className={MOBILE ? 'mobile' : ''}>{description}</BlogInfo>}
           </BlogImgWrapper>
         </>
