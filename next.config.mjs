@@ -19,6 +19,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'proxy.nohv.site' },
       { protocol: 'https', hostname: 'cdn.palms.blog' },
     ],
+    formats: ['image/avif', 'image/webp'],
   },
   webpack: (config) => {
     config.module.rules.push({
