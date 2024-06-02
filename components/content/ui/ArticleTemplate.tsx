@@ -56,6 +56,7 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
               alt="article content thumbnail"
               width={720}
               height={405}
+              priority
             />
           ) : (
             <Blank />
@@ -77,18 +78,28 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
             <Content content={content} />
             <LinkBtn onClick={copyCurrentUrl}>아티클 링크 복사하기</LinkBtn>
             <Bar />
+            {team === 'forweber' && (
+              <DiscussionEmbed
+                shortname={process.env.NEXT_PUBLIC_SHORT_NAME}
+                config={{
+                  url: `https://${team}.${process.env.DOMAIN_NAME}/${contentUrl}`,
+                  identifier: String(contentUrl),
+                  title: title,
+                }}
+              />
+            )}
+            {team === 'init' && (
+              <DiscussionEmbed
+                shortname={process.env.NEXT_PUBLIC_SHORT_NAME}
+                config={{
+                  url: `https://${team}.${process.env.DOMAIN_NAME}/${contentUrl}`,
+                  identifier: String(contentUrl),
+                  title: title,
+                }}
+              />
+            )}
             <Recommend data={recommendedArticles} />
           </ContentPageContainer>
-          {team === 'forweber' && (
-            <DiscussionEmbed
-              shortname={process.env.NEXT_PUBLIC_SHORT_NAME}
-              config={{
-                url: `https://${team}.${process.env.DOMAIN_NAME}/${contentUrl}`,
-                identifier: String(contentUrl),
-                title: title,
-              }}
-            />
-          )}
         </CommentContainer>
       );
   };
@@ -111,8 +122,8 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
 export default ArticleTemplate;
 
 const CommentContainer = styled.div`
-  & > #disqus_thread {
-    margin: 0 auto;
+  & #disqus_thread {
+    /* margin: 0 auto; */
     width: 72rem;
   }
 `;

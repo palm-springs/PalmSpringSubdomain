@@ -28,6 +28,7 @@ jobs:
           echo NODE_ENV=production >> .env
           echo NEXT_PUBLIC_DOMAIN_NAME=${{ secrets.NEXT_PUBLIC_DOMAIN_NAME }} >> .env
           echo NEXT_PUBLIC_SHORT_NAME=${{ secrets.NEXT_PUBLIC_SHORT_NAME }} >> .env
+          echo NEXT_SHARP_PATH=${{ secrets.NEXT_SHARP_PATH }} >> .env
 
           cat .env
 

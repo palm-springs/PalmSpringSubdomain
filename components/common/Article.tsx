@@ -41,8 +41,8 @@ const Article = (props: ArticleProps) => {
 export default Article;
 
 const ArticleThumbnail = styled(Image)`
+  border: 1px solid rgba(52, 58, 64, 0.1);
   border-radius: 1.2rem;
-
   width: 22.8rem;
   height: 17rem;
   object-fit: cover;

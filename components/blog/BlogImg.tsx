@@ -17,12 +17,12 @@ const BlogImg = (props: BlogMainImgProps) => {
   const MOBILE = useCheckMobile();
 
   return (
-    //블로그 대문 이미지가 있는 경우에만 블로그 소개글이 같이 나타납니다
+    //블로그 대문 이미지가 있는 경우에만 블로그 소개글이 같이 나타남
     <BlogImgContainer>
       {thumbnail && (
         <>
           <BlogImgWrapper className={MOBILE ? 'mobile' : ''}>
-            <Image src={thumbnail} alt="blog main" fill={true} />
+            <Image src={thumbnail} alt="blog main" fill={true} priority />
             {description && <BlogInfo className={MOBILE ? 'mobile' : ''}>{description}</BlogInfo>}
           </BlogImgWrapper>
         </>

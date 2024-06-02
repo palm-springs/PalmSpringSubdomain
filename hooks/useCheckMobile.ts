@@ -7,7 +7,7 @@ const useCheckMobile = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   const mobile = useMediaQuery({
-    query: '(min-width : 375px) and (max-width:768px)',
+    query: '(max-width:768px)',
   });
   useEffect(() => {
     if (mobile) {

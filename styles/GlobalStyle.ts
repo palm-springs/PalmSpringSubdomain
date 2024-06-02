@@ -10,7 +10,8 @@ export const GlobalStyle = createGlobalStyle`
     url("https://db.onlinewebfonts.com/t/2b8448d01a50ec1ac97d96c883b8a9b8.woff")format("woff"),
     url("https://db.onlinewebfonts.com/t/2b8448d01a50ec1ac97d96c883b8a9b8.ttf")format("truetype"),
     url("https://db.onlinewebfonts.com/t/2b8448d01a50ec1ac97d96c883b8a9b8.svg#Fira Mono")format("svg");
-}
+    font-display: swap;
+  }
   @font-face {
   font-family: 'Pretendard';
   font-weight: 100;
