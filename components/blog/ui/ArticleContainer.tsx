@@ -29,6 +29,7 @@ interface ArticleContainerProps {
 
 const ArticleContainer = (props: ArticleContainerProps) => {
   const MOBILE = useCheckMobile();
+  console.log('hello', process.env.NEXT_PUBLIC_DOMAIN_NAME, process.env.NEXT_SHARP_PATH);
 
   const { articleListData, thumbnail, description, blogName, filteredCategoryList, singleArticleDetail } = props;
   const CategorySelected = useGetCategory();
