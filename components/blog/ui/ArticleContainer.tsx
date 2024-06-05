@@ -39,7 +39,7 @@ const ArticleContainer = (props: ArticleContainerProps) => {
 
   if (articleListData?.length === 0 && thumbnail) {
     if (CategorySelected !== 'home') {
-      //아티클 리스트가 없고 카테고리 선택 안되어있고 블로그 대문이 있을 때
+      //아티클 리스트가 없고 카테고리 선택 안되어있고 블로그 대문이 있을 때.
       return (
         <BlogImgContainer>
           <BlogImg thumbnail={thumbnail} description={description} />
