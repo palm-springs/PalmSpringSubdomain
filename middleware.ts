@@ -11,6 +11,8 @@ export const middleware = (request: NextRequest) => {
     return NextResponse.redirect(
       new URL(`${HTTP_PROTOCOL}://${subdomain}.${process.env.NEXT_PUBLIC_DOMAIN_NAME}`, request.url),
     );
+  } else if (pathName === '/robots.txt') {
+    return NextResponse.redirect(new URL(`https:/${process.env.NEXT_PUBLIC_DOMAIN_NAME}/sitemap.xml`, request.url));
   } else {
     console.log('logging subdomain', host);
     if (host === 'srookie.palmsummer.site') {
