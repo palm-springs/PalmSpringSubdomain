@@ -1,3 +1,0 @@
-User-Agent: *
-Allow: /
-Sitemap: https://palms.blog/sitemap.xml
