@@ -44,7 +44,7 @@ const BlogMainPage = async ({ params }: { params: { team: string } }) => {
   const blogArticleRes = await getBlogArticleList(params.team, '');
   const filteredCategoryList = await getBlogCategoryList(params.team);
 
-  console.log(process.env.NEXT_SHARP_PATH);
+  console.log('hello', process.env.NEXT_PUBLIC_DOMAIN_NAME, process.env.NEXT_SHARP_PATH);
 
   if (!blogMainRes || !blogArticleRes || blogMainRes.code === 404 || blogArticleRes.code === 404) return <NotFound />;
 
