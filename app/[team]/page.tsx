@@ -2,6 +2,7 @@
 //여기서 동적 태그 작업
 import React from 'react';
 import { Metadata } from 'next';
+import { headers } from 'next/headers';
 
 import { getMetaBlogInfo } from '@/apis/blog';
 import { getBlogArticleList, getBlogCategoryList, getBlogMainImg, getContentDetail } from '@/apis/blogHome';
@@ -42,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | nu
 const BlogMainPage = async ({ params }: { params: { team: string } }) => {
   const blogMainRes = await getBlogMainImg(params.team);
   const blogArticleRes = await getBlogArticleList(params.team, '');
-  const filteredCategoryList = await getBlogCategoryList(params.team);
+  const categoryList = await getBlogCategoryList(params.team);
 
   if (!blogMainRes || !blogArticleRes || blogMainRes.code === 404 || blogArticleRes.code === 404) return <NotFound />;
 
@@ -53,19 +54,22 @@ const BlogMainPage = async ({ params }: { params: { team: string } }) => {
   const { data: articleListData } = blogArticleRes;
 
   const IndivContentId = articleListData.length > 0 ? articleListData[0].articleUrl : '';
-
   const singleArticleDetail = articleListData.length > 0 ? await getContentDetail(params.team, IndivContentId) : null;
 
-  return (
-    <ArticleContainer
-      articleListData={articleListData}
-      thumbnail={thumbnail}
-      description={description}
-      blogName={blogName}
-      filteredCategoryList={filteredCategoryList}
-      singleArticleDetail={singleArticleDetail}
-    />
-  );
+  const headerList = headers();
+  const isDeviceMobile = headerList.get('x-is-mobile') === 'true';
+
+  const ArticleContainerProps = {
+    articleListData,
+    thumbnail,
+    description,
+    blogName,
+    categoryList,
+    singleArticleDetail,
+    isDeviceMobile,
+  };
+
+  return <ArticleContainer {...ArticleContainerProps} />;
 };
 
 export default BlogMainPage;
