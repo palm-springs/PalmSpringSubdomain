@@ -4,7 +4,6 @@ import React from 'react';
 import { useParams } from 'next/navigation';
 import styled from 'styled-components';
 
-import useCheckMobile from '@/hooks/useCheckMobile';
 import { ArticleData } from '@/types/article';
 
 import Article from './Article';
@@ -12,10 +11,11 @@ import MobileArticle from './MobileArticle';
 
 interface ArticleListProp {
   articleList: ArticleData[];
+  isMobile: boolean;
 }
 
 const ArticleList = (prop: ArticleListProp) => {
-  const { articleList } = prop;
+  const { articleList, isMobile } = prop;
   const { category } = useParams();
 
   const categoryName = decodeURI(category as string);
@@ -24,10 +24,9 @@ const ArticleList = (prop: ArticleListProp) => {
     ({ articleCategory }) => articleCategory.categoryName === categoryName,
   );
 
-  const MOBILE = useCheckMobile();
   const targetList = category ? filteredArticleList : articleList;
 
-  if (MOBILE)
+  if (isMobile)
     return (
       <ArticleListContainer className="mobile">
         {targetList.map((article) => (

@@ -1,9 +1,7 @@
 'use client';
 
 import React from 'react';
-import styled from 'styled-components';
 
-import ArticleList from '@/components/common/ArticleList';
 import LoadingLottie from '@/components/common/ui/LoadingLottie';
 import useCheckMobile from '@/hooks/useCheckMobile';
 import useGetCategory from '@/hooks/useGetCategory';
@@ -16,138 +14,57 @@ import { getLiteralCategoryList } from '@/utils/getLiteralCategoryList';
 import BlogImg from '../BlogImg';
 
 import ArticleListWithThumbnail from './ArticleListWithThumbnail';
-import CategoryBtnBar from './CategoryBtnBar';
+import EmptyBlog from './EmptyBlog';
 
 interface ArticleContainerProps {
   articleListData: ArticleData[];
   thumbnail: string | null;
   description: string | null;
   blogName: string;
-  filteredCategoryList: Response<CategoryListProps[]>;
+  categoryList: Response<CategoryListProps[]>;
   singleArticleDetail: Response<ContentProps> | null;
+  isDeviceMobile: boolean;
 }
 
+// 각 상황에 대한 렌더링 ui 결정
 const ArticleContainer = (props: ArticleContainerProps) => {
-  const MOBILE = useCheckMobile();
+  const { isDeviceMobile, articleListData, thumbnail, description, blogName, categoryList, singleArticleDetail } =
+    props;
 
-  const { articleListData, thumbnail, description, blogName, filteredCategoryList, singleArticleDetail } = props;
+  //초기값 세팅 및 브라우저 resize에 따른 반응형 업데이트
+  const isMobile = useCheckMobile(isDeviceMobile);
   const CategorySelected = useGetCategory();
 
-  if (!filteredCategoryList || !CategorySelected) return <LoadingLottie width={10} height={10} fit />;
+  // loading
+  if (!categoryList || !CategorySelected || !articleListData) return <LoadingLottie width={10} height={10} fit />;
 
-  const LiteralList = getLiteralCategoryList(filteredCategoryList);
+  const categoryLiteralList = getLiteralCategoryList(categoryList);
 
-  if (articleListData?.length === 0 && thumbnail) {
-    if (CategorySelected !== 'home') {
-      //아티클 리스트가 없고 카테고리 선택 안되어있고 블로그 대문이 있을 때.
-      return (
-        <BlogImgContainer>
-          <BlogImg thumbnail={thumbnail} description={description} />
-          <CategoryBtnWrapper>
-            <CategoryBtnBar LiteralList={LiteralList} />
-          </CategoryBtnWrapper>
-        </BlogImgContainer>
-      );
-    } else {
-      //아티클 리스트 없고 카테고리 선택되어있고 블로그 대문 있을 때
-      return (
-        <BlogImgContainer>
-          <BlogImg thumbnail={thumbnail} description={description} />
-        </BlogImgContainer>
-      );
-    }
+  // props
+  const blogImgProps = { thumbnail, description };
+  const articleProps = { articleList: articleListData, categoryLiteralList };
+
+  // 아티클 X
+  if (articleListData.length === 0) {
+    return thumbnail ? (
+      <BlogImg {...blogImgProps} isMobile={isMobile} />
+    ) : (
+      <EmptyBlog isMobile={isMobile} blogName={blogName} />
+    );
   }
 
-  //아티클 리스트가 없고 블로그 대문이 없을 때
-  if (articleListData?.length === 0 && !thumbnail)
-    return (
-      <>
-        <DefaultTextContainer className={MOBILE ? 'mobile' : ''}>
-          <DefaultTitle className={MOBILE ? 'mobile' : ''}>{blogName}</DefaultTitle>
-          <DefaultSubText className={MOBILE ? 'mobile' : ''}>등록된 글이 없습니다</DefaultSubText>
-        </DefaultTextContainer>
-      </>
-    );
-
-  //아티클 리스트가 있고 블로그 대문이 없을 때
-  if (articleListData?.length !== 0 && !thumbnail)
+  // 아티클 O
+  if (articleListData.length !== 0)
     return (
       <ArticleListWithThumbnail
-        articleList={articleListData}
-        filteredCategoryList={filteredCategoryList}
+        {...articleProps}
+        {...blogImgProps}
         singleArticleDetail={singleArticleDetail}
-        literalList={LiteralList}
+        isMobile={isMobile}
       />
-    );
-
-  //아티클 리스트가 있고 블로그 대문이 있을 때
-  if (articleListData?.length !== 0 && thumbnail)
-    return (
-      <>
-        <BlogImg thumbnail={thumbnail} description={description} />
-        <CategoryBtnWrapper>
-          <CategoryBtnBar LiteralList={LiteralList} />
-        </CategoryBtnWrapper>
-        <ArticleWrapper>
-          <ArticleList articleList={articleListData} />
-        </ArticleWrapper>
-      </>
     );
 
   return <LoadingLottie width={10} height={10} fit />;
 };
 
 export default ArticleContainer;
-
-const DefaultTitle = styled.div`
-  ${({ theme }) => theme.fonts.Title};
-  color: ${({ theme }) => theme.colors.grey_900};
-
-  &.mobile {
-    ${({ theme }) => theme.mobileFonts.Title1};
-  }
-`;
-const DefaultSubText = styled.div`
-  ${({ theme }) => theme.fonts.Heading3_Semibold};
-  color: ${({ theme }) => theme.colors.grey_700};
-
-  &.mobile {
-    ${({ theme }) => theme.mobileFonts.Body1_Semibold};
-  }
-`;
-
-const ArticleWrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  margin-bottom: 11rem;
-  width: 100vw;
-`;
-const CategoryBtnWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-
-  width: 100vw;
-`;
-
-const BlogImgContainer = styled.div`
-  padding-bottom: 22.3rem;
-  width: 100%;
-`;
-
-const DefaultTextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-  align-items: center;
-  justify-content: center;
-  padding: 0 7.2rem;
-
-  padding: 34rem 0 25.6rem;
-  width: 100%;
-
-  &.mobile {
-    height: calc(100vh - 20rem);
-  }
-`;

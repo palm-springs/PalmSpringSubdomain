@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import useCheckMobile from '@/hooks/useCheckMobile';
 import useGetIfContentPage from '@/hooks/useGetIfContentPage';
 import useGetIfPage from '@/hooks/useGetIfPage';
 import { NoUserProfileIcon } from '@/public/icons';
@@ -26,12 +25,11 @@ interface ContentInfoProps {
   };
   IndivContentId?: number;
   articleUrl?: string;
+  isMobile: boolean;
 }
 
 const ContentInfo = (props: ContentInfoProps) => {
-  const MOBILE = useCheckMobile();
-
-  const { contentInfoData, IndivContentId, articleUrl } = props;
+  const { contentInfoData, IndivContentId, articleUrl, isMobile } = props;
 
   const ifContent = useGetIfContentPage();
   const ifPage = useGetIfPage();
@@ -43,7 +41,7 @@ const ContentInfo = (props: ContentInfoProps) => {
 
   const { thumbnail, name, job, createdAt, id } = teamMember;
 
-  if (MOBILE)
+  if (isMobile)
     return (
       <ContentInfoContainer className="mobile">
         {ifContent ? (
