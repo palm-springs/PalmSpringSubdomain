@@ -17,6 +17,7 @@ interface AuthorPageTemplateProps {
     description: string;
     articles: [];
   };
+  isDeviceMobile: boolean;
 }
 
 const AuthorPageTemplate = (props: AuthorPageTemplateProps) => {
@@ -24,18 +25,19 @@ const AuthorPageTemplate = (props: AuthorPageTemplateProps) => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, []);
 
-  const MOBILE = useCheckMobile();
-
   const {
     authorData: { thumbnail, nickname, job, description, articles },
+    isDeviceMobile,
   } = props;
 
+  const isMobile = useCheckMobile(isDeviceMobile);
+
   return (
-    <AuthorPageTemplateContainer className={MOBILE ? 'mobile' : ''}>
-      <AuthorInfo thumbnail={thumbnail} nickname={nickname} job={job} description={description} />
-      {articles.length !== 0 && <Line className={MOBILE ? 'mobile' : ''} />}
-      {articles.length !== 0 && <AuthorArticle className={MOBILE ? 'mobile' : ''}>작성한 아티클</AuthorArticle>}
-      <ArticleList articleList={articles} />
+    <AuthorPageTemplateContainer className={isMobile ? 'mobile' : ''}>
+      <AuthorInfo thumbnail={thumbnail} nickname={nickname} job={job} description={description} isMobile={isMobile} />
+      {articles.length !== 0 && <Line className={isMobile ? 'mobile' : ''} />}
+      {articles.length !== 0 && <AuthorArticle className={isMobile ? 'mobile' : ''}>작성한 아티클</AuthorArticle>}
+      <ArticleList articleList={articles} isMobile={isMobile} />
     </AuthorPageTemplateContainer>
   );
 };

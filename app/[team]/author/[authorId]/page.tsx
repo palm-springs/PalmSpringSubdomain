@@ -1,5 +1,6 @@
 // 글쓴이 별 페이지
 import React from 'react';
+import { headers } from 'next/headers';
 
 import { getBlogAuthorDetail } from '@/apis/blogHome';
 import NotFound from '@/app/not-found';
@@ -18,7 +19,10 @@ const AuthorPage = async ({ params }: Props) => {
 
   const { data } = blogAuthorRes;
 
-  return <AuthorPageTemplate authorData={data} />;
+  const headerList = headers();
+  const isDeviceMobile = headerList.get('x-is-mobile') === 'true';
+
+  return <AuthorPageTemplate authorData={data} isDeviceMobile={isDeviceMobile} />;
 };
 
 export default AuthorPage;
