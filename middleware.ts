@@ -23,6 +23,11 @@ export const middleware = (request: NextRequest) => {
     return NextResponse.redirect(new URL(`https://${process.env.NEXT_PUBLIC_DOMAIN_NAME}/robots.txt`, request.url));
   } else {
     console.log('logging subdomain', host);
+    if (host === 'seohyun.palms.blog') {
+      return NextResponse.rewrite(
+        new URL(`/official${request.nextUrl.clone().pathname}/${userAgent}${isMobile}`, request.url),
+      );
+    }
     if (host === 'srookie.palmsummer.site') {
       return NextResponse.rewrite(new URL(`/official${request.nextUrl.clone().pathname}`, request.url));
     }
