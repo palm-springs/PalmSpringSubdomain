@@ -2,19 +2,37 @@
 
 import styled from 'styled-components';
 
+import BlogImg from '../BlogImg';
+
 interface EmptyBlogProps {
   isMobile: boolean;
   blogName: string;
+  thumbnail: string | null;
+  description: string | null;
 }
 
 // 블로그 대문 X, 아티클 리스트 X
 const EmptyBlog = (props: EmptyBlogProps) => {
-  const { isMobile, blogName } = props;
+  const { isMobile, blogName, thumbnail, description } = props;
+
+  const blogImgProps = { thumbnail, description };
+
   return (
-    <DefaultTextContainer className={isMobile ? 'mobile' : ''}>
-      <DefaultTitle className={isMobile ? 'mobile' : ''}>{blogName}</DefaultTitle>
-      <DefaultSubText className={isMobile ? 'mobile' : ''}>등록된 글이 없습니다</DefaultSubText>
-    </DefaultTextContainer>
+    <>
+      {thumbnail ? (
+        <>
+          <BlogImg {...blogImgProps} isMobile={isMobile} noArticle />
+          <DefaultTextContainer className={isMobile ? 'mobile' : ''} $noTitle>
+            <DefaultSubText className={isMobile ? 'mobile' : ''}>등록된 글이 없습니다</DefaultSubText>
+          </DefaultTextContainer>
+        </>
+      ) : (
+        <DefaultTextContainer className={isMobile ? 'mobile' : ''}>
+          <DefaultTitle className={isMobile ? 'mobile' : ''}>{blogName}</DefaultTitle>
+          <DefaultSubText className={isMobile ? 'mobile' : ''}>등록된 글이 없습니다</DefaultSubText>
+        </DefaultTextContainer>
+      )}
+    </>
   );
 };
 
@@ -38,7 +56,7 @@ const DefaultSubText = styled.div`
   }
 `;
 
-const DefaultTextContainer = styled.div`
+const DefaultTextContainer = styled.div<{ $noTitle?: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
@@ -46,10 +64,11 @@ const DefaultTextContainer = styled.div`
   justify-content: center;
   padding: 0 7.2rem;
 
-  padding: 34rem 0 25.6rem;
-  width: 100%;
+  padding: ${({ $noTitle }) => ($noTitle ? '0' : '34rem 0 25.6rem')};
 
+  width: 100%;
+  height: ${({ $noTitle }) => ($noTitle ? 'calc(100vh - 25rem)' : 'auto')};
   &.mobile {
-    height: calc(100vh - 20rem);
+    height: ${({ $noTitle }) => ($noTitle ? 'calc(100vh - 100vw*(9/16) - 6rem)' : 'calc(100vh - 20rem)')};
   }
 `;
