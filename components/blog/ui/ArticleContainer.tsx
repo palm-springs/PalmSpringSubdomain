@@ -47,7 +47,7 @@ const ArticleContainer = (props: ArticleContainerProps) => {
   // 아티클 X
   if (articleListData.length === 0) {
     return thumbnail ? (
-      <BlogImg {...blogImgProps} isMobile={isMobile} />
+      <BlogImg {...blogImgProps} isMobile={isMobile} noArticle />
     ) : (
       <EmptyBlog isMobile={isMobile} blogName={blogName} />
     );

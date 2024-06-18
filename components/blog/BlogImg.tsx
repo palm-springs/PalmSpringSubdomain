@@ -8,14 +8,15 @@ interface BlogMainImgProps {
   thumbnail: string | null;
   description: string | null;
   isMobile: boolean;
+  noArticle?: boolean;
 }
 
 const BlogImg = (props: BlogMainImgProps) => {
-  const { thumbnail, description, isMobile } = props;
+  const { thumbnail, description, isMobile, noArticle } = props;
 
   return (
     //블로그 대문 이미지가 있는 경우에만 블로그 소개글이 같이 나타남
-    <BlogImgContainer>
+    <BlogImgContainer $noArticle={noArticle}>
       {thumbnail && (
         <>
           <BlogImgWrapper className={isMobile ? 'mobile' : ''}>
@@ -30,10 +31,11 @@ const BlogImg = (props: BlogMainImgProps) => {
 
 export default BlogImg;
 
-const BlogImgContainer = styled.div`
+const BlogImgContainer = styled.div<{ $noArticle?: boolean }>`
   position: relative;
 
   margin-top: 6rem;
+  padding-bottom: ${({ $noArticle }) => ($noArticle ? '22.3rem' : 0)};
   width: 100%;
 `;
 
