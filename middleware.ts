@@ -12,6 +12,9 @@ export const middleware = (request: NextRequest) => {
   const userAgent = request.headers.get('user-agent');
   const isMobile = userAgent ? /mobile/i.test(userAgent) : false;
 
+  console.log('User-Agent:', userAgent); // 로그 추가
+  console.log('Is Mobile:', isMobile); // 로그 추가
+
   if (pathName.startsWith('/home')) {
     return NextResponse.redirect(
       new URL(`${HTTP_PROTOCOL}://${subdomain}.${process.env.NEXT_PUBLIC_DOMAIN_NAME}`, request.url),
