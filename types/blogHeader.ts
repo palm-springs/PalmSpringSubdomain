@@ -1,6 +1,7 @@
 export interface HeaderProps extends NavListOnly {
   logo: string | null;
   blogName: string;
+  isDeviceMobile: boolean;
 }
 
 export interface FooterProps {

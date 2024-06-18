@@ -21,6 +21,7 @@ import MobileContent from '../MobileContent';
 interface ArticleTemplateProps {
   data: ContentProps;
   recommendedArticles: ArticleData[];
+  isDeviceMobile: boolean;
 }
 
 const ArticleTemplate = (props: ArticleTemplateProps) => {
@@ -31,9 +32,10 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
   const {
     data: { thumbnail, title, description, teamMember, content },
     recommendedArticles,
+    isDeviceMobile,
   } = props;
 
-  const MOBILE = useCheckMobile();
+  const isMobile = useCheckMobile(isDeviceMobile);
   const { team, contentUrl } = useParams();
 
   const linkCopiedNotify = createToast({ type: 'NORMAL', message: '링크가 복사되었습니다.', id: 'link copied' });
@@ -46,7 +48,7 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
   };
 
   const ArticleMain = () => {
-    if (MOBILE)
+    if (isMobile)
       return (
         <ContentPageContainer className="mobile">
           {thumbnail ? (
@@ -61,12 +63,12 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
           ) : (
             <Blank />
           )}
-          <ContentInfo contentInfoData={{ title, description, teamMember }} />
+          <ContentInfo contentInfoData={{ title, description, teamMember }} isMobile={isMobile} />
           <MobileContent content={content} />
           <LinkBtn className="mobile" type="button" onClick={copyCurrentUrl}>
             아티클 링크 복사하기
           </LinkBtn>
-          <Recommend data={recommendedArticles} />
+          <Recommend data={recommendedArticles} isMobile={isMobile} />
         </ContentPageContainer>
       );
     else
@@ -74,7 +76,7 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
         <CommentContainer>
           <ContentPageContainer>
             {thumbnail && <ArticleThumbnail src={thumbnail} alt="article content thumbnail" width={720} height={405} />}
-            <ContentInfo contentInfoData={{ title, description, teamMember }} />
+            <ContentInfo contentInfoData={{ title, description, teamMember }} isMobile={isMobile} />
             <Content content={content} />
             <LinkBtn onClick={copyCurrentUrl}>아티클 링크 복사하기</LinkBtn>
             <Bar />
@@ -98,7 +100,7 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
                 }}
               />
             )}
-            <Recommend data={recommendedArticles} />
+            <Recommend data={recommendedArticles} isMobile={isMobile} />
           </ContentPageContainer>
         </CommentContainer>
       );

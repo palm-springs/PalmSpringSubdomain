@@ -5,20 +5,18 @@ import { useParams } from 'next/navigation';
 import styled from 'styled-components';
 
 import LoadingLottie from '@/components/common/ui/LoadingLottie';
-import useCheckMobile from '@/hooks/useCheckMobile';
 import { ArticleData } from '@/types/article';
 
 import ArticleBox from './ArticleBox';
 
 interface RecommendProps {
   data: ArticleData[];
+  isMobile: boolean;
 }
 
 const Recommend = (props: RecommendProps) => {
-  const { data } = props;
+  const { data, isMobile } = props;
   const { contentUrl } = useParams();
-
-  const MOBILE = useCheckMobile();
 
   if (!data) return <LoadingLottie width={5} height={5} fit />;
 
@@ -29,9 +27,11 @@ const Recommend = (props: RecommendProps) => {
   const recommendArticle = filteredData.slice(0, 3);
 
   return (
-    <RecommendContainer className={MOBILE ? 'mobile' : ''}>
-      {recommendArticle.length !== 0 && <RecommendTitle className={MOBILE ? 'mobile' : ''}>최신 아티클</RecommendTitle>}
-      <ArticleBox recommendArticle={recommendArticle} />
+    <RecommendContainer className={isMobile ? 'mobile' : ''}>
+      {recommendArticle.length !== 0 && (
+        <RecommendTitle className={isMobile ? 'mobile' : ''}>최신 아티클</RecommendTitle>
+      )}
+      <ArticleBox recommendArticle={recommendArticle} isMobile={isMobile} />
     </RecommendContainer>
   );
 };

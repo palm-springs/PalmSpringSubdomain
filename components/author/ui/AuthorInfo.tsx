@@ -4,7 +4,6 @@ import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
-import useCheckMobile from '@/hooks/useCheckMobile';
 import { IcAuthorDefaultIcon } from '@/public/icons';
 
 interface AuthorInfoComponentProps {
@@ -12,23 +11,22 @@ interface AuthorInfoComponentProps {
   nickname: string;
   job: string;
   description: string;
+  isMobile: boolean;
 }
 
 const AuthorInfo = (props: AuthorInfoComponentProps) => {
-  const { thumbnail, nickname, job, description } = props;
-
-  const MOBILE = useCheckMobile();
+  const { thumbnail, nickname, job, description, isMobile } = props;
 
   return (
-    <AuthorInfoContainer className={MOBILE ? 'mobile' : ''}>
+    <AuthorInfoContainer className={isMobile ? 'mobile' : ''}>
       {thumbnail ? (
         <AuthorProfile src={thumbnail} alt="author profile pic" width={160} height={160} />
       ) : (
         <IcAuthorDefaultIcon />
       )}
-      <AuthorName className={MOBILE ? 'mobile' : ''}>{nickname}</AuthorName>
-      <AuthorPosition className={MOBILE ? 'mobile' : ''}>{job}</AuthorPosition>
-      <AuthorDescription className={MOBILE ? 'mobile' : ''}>{description}</AuthorDescription>
+      <AuthorName className={isMobile ? 'mobile' : ''}>{nickname}</AuthorName>
+      <AuthorPosition className={isMobile ? 'mobile' : ''}>{job}</AuthorPosition>
+      <AuthorDescription className={isMobile ? 'mobile' : ''}>{description}</AuthorDescription>
     </AuthorInfoContainer>
   );
 };

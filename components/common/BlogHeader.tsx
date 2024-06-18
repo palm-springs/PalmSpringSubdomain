@@ -12,14 +12,14 @@ import HeaderLogo from './HeaderLogo';
 import SideBar from './SideBar';
 
 const BlogHeader = (props: HeaderProps) => {
-  const { logo, blogName, navList } = props;
+  const { logo, blogName, navList, isDeviceMobile } = props;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const MOBILE = useCheckMobile();
+  const isMobile = useCheckMobile(isDeviceMobile);
 
   const sidebarToggle = () => setIsMenuOpen(!isMenuOpen);
 
-  if (MOBILE)
+  if (isMobile)
     return (
       <BlogHeaderContainer className="mobile">
         <HeaderLogo logo={logo} blogName={blogName} />

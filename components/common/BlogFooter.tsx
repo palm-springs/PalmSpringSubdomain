@@ -9,12 +9,13 @@ import useCheckMobile from '@/hooks/useCheckMobile';
 interface BlogFooterProps {
   companyName: string;
   companyDetail: string;
+  isDeviceMobile: boolean;
 }
 
 const BlogFooter = (props: BlogFooterProps) => {
-  const { companyName, companyDetail } = props;
+  const { companyName, companyDetail, isDeviceMobile } = props;
 
-  const MOBILE = useCheckMobile();
+  const isMobile = useCheckMobile(isDeviceMobile);
 
   const footerMain = () => {
     return (
@@ -28,7 +29,7 @@ const BlogFooter = (props: BlogFooterProps) => {
     );
   };
 
-  if (MOBILE)
+  if (isMobile)
     return (
       <FooterContainer>
         <MobileFooterWrap>{footerMain()}</MobileFooterWrap>

@@ -20,7 +20,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           {children}
-          <GoogleAnalytics gaId={GA_ID} />
+          {process.env.NODE_ENV !== 'development' && <GoogleAnalytics gaId={GA_ID} />}
           <div id="modal-root"></div>
         </ThemeProvider>
       </StyledComponentsRegistry>
