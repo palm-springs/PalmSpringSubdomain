@@ -28,30 +28,30 @@ const BlogImg = (props: BlogMainImgProps) => {
 export default BlogImg;
 
 const BlogImgWrapper = styled.div<{ thumbnail?: string }>`
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  background-image: url(${(props) => props.thumbnail});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0 3.2rem;
   width: 100%;
   height: 50rem;
-  padding: 0 3.2rem;
   &.mobile {
-    height: calc(100vw * (9 / 16));
     padding: 0 2.4rem;
+    height: calc(100vw * (9 / 16));
   }
-  background-image: url(${(props) => props.thumbnail});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  display: flex;
-  justify-content: left;
-  align-items: center;
 `;
 
 const BlogInfo = styled.div`
+  margin: auto;
   width: 100%;
   max-width: 100rem;
-  margin: auto;
-  color: #fff;
-  font-size: 2.4rem;
   line-height: 160%;
   white-space: pre-wrap;
+  color: #fff;
+  font-size: 2.4rem;
   &.mobile {
     font-size: 1.6rem;
   }
