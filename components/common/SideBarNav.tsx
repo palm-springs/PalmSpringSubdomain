@@ -26,7 +26,8 @@ const SideBarNav = (props: NavListOnly) => {
 export default SideBarNav;
 
 const NavLink = styled(Link)`
-  ${({ theme }) => theme.mobileFonts.Markdown_H3};
+  ${({ theme }) => theme.mobileFonts.Body1_Regular};
+  font-weight: 500;
 
   /* stylelint-disable-next-line value-no-vendor-prefix */
   display: -webkit-box;
@@ -36,6 +37,8 @@ const NavLink = styled(Link)`
 
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+
+  text-align: left;
 
   color: ${({ theme }) => theme.colors.grey_900};
 `;

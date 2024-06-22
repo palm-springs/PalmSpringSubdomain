@@ -10,11 +10,13 @@ const PageBtn = ({ children }: { children: React.ReactNode }) => {
 export default PageBtn;
 
 const PageBtnContainer = styled.button`
-  ${({ theme }) => theme.fonts.Body2_Semibold};
+  ${({ theme }) => theme.fonts.Body2_Regular};
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 0.8rem;
+  font-weight: 500;
+
   padding: 1rem;
   height: 3.6rem;
   text-align: center;

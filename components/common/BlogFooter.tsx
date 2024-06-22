@@ -31,7 +31,7 @@ const BlogFooter = (props: BlogFooterProps) => {
 
   if (isMobile)
     return (
-      <FooterContainer>
+      <FooterContainer className={isMobile ? 'mobile' : ''}>
         <MobileFooterWrap>{footerMain()}</MobileFooterWrap>
       </FooterContainer>
     );
@@ -96,10 +96,14 @@ const FooterContainer = styled.div`
 
   display: flex;
   justify-content: center;
+  background: #fafafa;
 
   border-top: 1px solid ${({ theme }) => theme.colors.grey_300};
+  padding: 7.2rem 0 8.4rem 0;
+  &.mobile {
+    padding: 4rem 0 7.2rem 0;
+  }
 
-  padding: 7.2rem 0;
   width: 100%;
 `;
 

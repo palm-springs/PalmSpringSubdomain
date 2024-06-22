@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import styled from 'styled-components';
 
 interface BlogMainImgProps {
@@ -18,12 +17,9 @@ const BlogImg = (props: BlogMainImgProps) => {
     //블로그 대문 이미지가 있는 경우에만 블로그 소개글이 같이 나타남
     <BlogImgContainer $noArticle={noArticle}>
       {thumbnail && (
-        <>
-          <BlogImgWrapper className={isMobile ? 'mobile' : ''}>
-            <Image src={thumbnail} alt="blog main" fill={true} priority />
-            {description && <BlogInfo className={isMobile ? 'mobile' : ''}>{description}</BlogInfo>}
-          </BlogImgWrapper>
-        </>
+        <BlogImgContainer1 className={isMobile ? 'mobile' : ''} thumbnail={thumbnail}>
+          <BlogInfo1 className={isMobile ? 'mobile' : ''}>{description}</BlogInfo1>
+        </BlogImgContainer1>
       )}
     </BlogImgContainer>
   );
@@ -31,43 +27,38 @@ const BlogImg = (props: BlogMainImgProps) => {
 
 export default BlogImg;
 
+const BlogImgContainer1 = styled.div<{ thumbnail?: string }>`
+  width: 100%;
+  height: 50rem;
+  padding: 0 3.2rem;
+  &.mobile {
+    height: calc(100vw * (9 / 16));
+    padding: 0 2.4rem;
+  }
+  background-image: url(${(props) => props.thumbnail});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+`;
+
+const BlogInfo1 = styled.div`
+  width: 100%;
+  max-width: 100rem;
+  margin: auto;
+  color: #fff;
+  font-size: 2.4rem;
+  line-height: 160%;
+  &.mobile {
+    font-size: 1.6rem;
+  }
+`;
+
 const BlogImgContainer = styled.div<{ $noArticle?: boolean }>`
   position: relative;
-
   margin-top: 6rem;
   /* padding-bottom: ${({ $noArticle }) => ($noArticle ? '22.3rem' : 0)}; */
   width: 100%;
-`;
-
-const BlogImgWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 50rem;
-  &.mobile {
-    height: calc(100vw * (9 / 16));
-  }
-
-  & > img {
-    user-select: none;
-    -webkit-user-drag: none;
-    object-fit: cover;
-  }
-`;
-
-const BlogInfo = styled.div`
-  ${({ theme }) => theme.fonts.Heading1};
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  text-align: center;
-  color: ${({ theme }) => theme.colors.grey_0};
-
-  pointer-events: none;
-
-  &.mobile {
-    ${({ theme }) => theme.mobileFonts.Body1_Semibold};
-  }
 `;
