@@ -13,7 +13,6 @@ import NotFound from '../not-found';
 type Props = {
   params: { team: string };
 };
-// export const runtime = 'edge';
 
 export async function generateMetadata({ params }: Props): Promise<Metadata | null> {
   const team = params.team;
