@@ -1,4 +1,6 @@
 export interface ContentProps {
+  id: number;
+  blogId: number;
   thumbnail: string;
   title: string;
   description?: string;

@@ -6,13 +6,14 @@ import { DiscussionEmbed } from 'disqus-react';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import styled from 'styled-components';
+import * as gtag from '@/hooks/useGtagEvents';
 
 import ContentInfo from '@/components/common/ContentInfo';
 import Content from '@/components/content/Content';
 import Bar from '@/components/content/ui/Bar';
 import Recommend from '@/components/content/ui/Recommend';
 import useCheckMobile from '@/hooks/useCheckMobile';
-import { ArticleData } from '@/types/article';
+import { ArticleData, SingleArticleData } from '@/types/article';
 import { ContentProps } from '@/types/content';
 import { createToast } from '@/utils/lib/toast';
 
@@ -29,12 +30,25 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
   }, []);
 
   const {
-    data: { thumbnail, title, description, teamMember, content },
+    data: { thumbnail, title, description, teamMember, content, id, blogId },
     recommendedArticles,
   } = props;
 
   const MOBILE = useCheckMobile();
   const { team, contentUrl } = useParams();
+
+  useEffect(() => {
+    if (title) {
+      gtag.event({
+        action: 'Page View',
+        category: 'Blog View',
+        label: title,
+        value: 1,
+        article_identifier: id,
+        blog_identifier: blogId,
+      });
+    }
+  }, []);
 
   const linkCopiedNotify = createToast({ type: 'NORMAL', message: '링크가 복사되었습니다.', id: 'link copied' });
 

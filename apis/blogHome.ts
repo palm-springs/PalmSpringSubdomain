@@ -1,6 +1,6 @@
 import { isAxiosError } from 'axios';
 
-import { ArticleData } from '@/types/article';
+import { ArticleData, SingleArticleData } from '@/types/article';
 import { AuthorInfoProps } from '@/types/author';
 import { FooterProps, HeaderProps, subscribeData } from '@/types/blogHeader';
 import { BlogImgProps } from '@/types/blogMainImg';
