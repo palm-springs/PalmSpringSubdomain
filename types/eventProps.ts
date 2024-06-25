@@ -3,4 +3,6 @@ export interface EventProps {
   category: string;
   label: string;
   value: string | number;
+  article_identifier: string;
+  blog_identifier: string;
 }

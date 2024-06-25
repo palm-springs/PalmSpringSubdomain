@@ -1,4 +1,5 @@
 import React from 'react';
+import Script from 'next/script';
 
 import { getBlogFooterInfo, getBlogHeaderInfo } from '@/apis/blogHome';
 import BlogFooter from '@/components/common/BlogFooter';

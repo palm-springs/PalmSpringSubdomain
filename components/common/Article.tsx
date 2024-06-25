@@ -1,11 +1,14 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
+import { useParams } from 'next/navigation';
 
 import useGetCategory from '@/hooks/useGetCategory';
+import * as gtag from '@/hooks/useGtagEvents';
 import { ArticleData } from '@/types/article';
 
 interface ArticleProps {
@@ -18,23 +21,48 @@ const Article = (props: ArticleProps) => {
     noHover,
     article: { id, title, description, memberName, createdAt, thumbnail, articleCategory, articleUrl },
   } = props;
+  const { team } = useParams();
+
+  // useEffect(() => {
+  //   if (title) {
+  //     gtag.event({
+  //       action: 'Page View',
+  //       category: 'Blog View',
+  //       label: title,
+  //       value: 1,
+  //     });
+  //   }
+  // }, []);
 
   const selectedCategory = useGetCategory();
 
+  const handleOnClickData = () => {
+    gtag.event({
+      action: 'Page View',
+      category: 'Blog View',
+      label: title,
+      value: '1',
+      article_identifier: articleUrl,
+      blog_identifier: String(team),
+    });
+  };
+
   return (
-    <ArticleContainer href={`/${articleUrl}`} className={noHover ? '' : 'hover'}>
-      <ArticleInfo $thumbnail={thumbnail ?? ''}>
-        <EditorInputTitle className="title">{title}</EditorInputTitle>
-        <ArticleDescription className="description">{description}</ArticleDescription>
-        <DetailBox>
-          {selectedCategory === 'home' && <CategoryBtn>{articleCategory.categoryName}</CategoryBtn>}
-          <ArticleDetail>{memberName}</ArticleDetail>
-          <Bar>|</Bar>
-          <ArticleDetail>{createdAt}</ArticleDetail>
-        </DetailBox>
-      </ArticleInfo>
-      {thumbnail && <ArticleThumbnail src={thumbnail} alt="Article Thumbnail" width={228} height={170} />}
-    </ArticleContainer>
+    <>
+      <ArticleContainer href={`/${articleUrl}`} className={noHover ? '' : 'hover'} onClick={handleOnClickData}>
+        <ArticleInfo $thumbnail={thumbnail ?? ''}>
+          <EditorInputTitle className="title">{title}</EditorInputTitle>
+          <ArticleDescription className="description">{description}</ArticleDescription>
+          <DetailBox>
+            {selectedCategory === 'home' && <CategoryBtn>{articleCategory.categoryName}</CategoryBtn>}
+            <ArticleDetail>{memberName}</ArticleDetail>
+            <Bar>|</Bar>
+            <ArticleDetail>{createdAt}</ArticleDetail>
+          </DetailBox>
+        </ArticleInfo>
+        {thumbnail && <ArticleThumbnail src={thumbnail} alt="Article Thumbnail" width={228} height={170} />}
+      </ArticleContainer>
+    </>
   );
 };
 
