@@ -23,8 +23,9 @@ const Content = (prop: ContentProp) => {
 export default Content;
 
 const ContentContainer = styled.section`
+  display: flex;
   position: relative !important;
-
+  flex-direction: column;
   margin-top: 6rem;
   width: 72rem;
 `;

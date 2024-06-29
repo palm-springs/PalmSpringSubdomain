@@ -176,7 +176,6 @@ const TitleBox = styled.h1`
   justify-content: flex-start;
 
   margin: 3.2rem 0 0.8rem;
-  width: 100%;
 
   overflow: hidden;
   word-break: break-all;
@@ -194,7 +193,6 @@ const DescriptionBox = styled.article`
   justify-content: flex-start;
 
   margin-bottom: 2.8rem;
-  width: 100%;
 
   overflow: hidden;
   word-break: break-all;
@@ -211,8 +209,6 @@ const WriterInfo = styled(Link)`
   gap: 1.6rem;
   align-items: center;
   justify-content: flex-start;
-
-  width: 100%;
 
   &.mobile {
     gap: 0.8rem;

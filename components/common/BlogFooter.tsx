@@ -64,11 +64,11 @@ const FooterWrapper = styled.div`
 `;
 
 const MobileFooterWrap = styled(FooterWrapper)`
-  margin-left: 2rem;
+  padding: 0 2rem;
 `;
 
 const CompanyName = styled.p`
-  line-height: normal;
+  line-height: 1.6;
   letter-spacing: -0.005em;
   color: ${({ theme }) => theme.colors.grey_1000};
   font-family: 'Pretendard';
@@ -80,7 +80,7 @@ const CompanyName = styled.p`
 const CompanyDetail = styled.p`
   margin: 1.2rem 0 2.8rem;
 
-  line-height: 1.95rem;
+  line-height: 1.6;
   letter-spacing: -0.005rem;
   white-space: pre-line;
 
@@ -96,6 +96,7 @@ const FooterContainer = styled.div`
 
   display: flex;
   justify-content: center;
+  margin-top: 4rem;
   border-top: 1px solid ${({ theme }) => theme.colors.grey_300};
   background: #fafafa;
 

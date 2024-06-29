@@ -14,7 +14,7 @@ const SideBarNav = (props: NavListOnly) => {
       {navList &&
         navList.map(({ navUrl, name, isPage }) => (
           <NavBtn key={navUrl} type="button">
-            <NavLink href={isPage ? `/${navUrl}}` : `${navUrl}`} target={isPage ? '_self' : '_blank'}>
+            <NavLink href={isPage ? `/${navUrl}` : `${navUrl}`} target={isPage ? '_self' : '_blank'}>
               {name}
             </NavLink>
           </NavBtn>
