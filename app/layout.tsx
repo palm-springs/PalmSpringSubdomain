@@ -21,7 +21,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
+      {/* GA4 스크립트를 비동기로 로드 */}
       <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
+      {/* window.dataLayer를 초기화하고, gtag 함수를 정의하여 dataLayer에 데이터를 푸시 */}
       <Script
         id="ga4_init"
         strategy="afterInteractive"
