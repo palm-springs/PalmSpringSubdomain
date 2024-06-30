@@ -6,7 +6,7 @@ import { DiscussionEmbed } from 'disqus-react';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import styled from 'styled-components';
-import * as gtag from '@/hooks/useGtagEvents';
+import * as gtag from '@/utils/getGtagEvents';
 
 import ContentInfo from '@/components/common/ContentInfo';
 import CopyLinkButton from '@/components/common/CopyLinkButton';
