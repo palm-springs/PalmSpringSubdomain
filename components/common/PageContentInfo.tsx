@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import useCheckMobile from '@/hooks/useCheckMobile';
 import useGetIfContentPage from '@/hooks/useGetIfContentPage';
 
 import LoadingLottie from './ui/LoadingLottie';
@@ -16,18 +15,17 @@ interface PageContentInfoProps {
   };
   IndivContentId?: number;
   articleUrl?: string;
+  isMobile: boolean;
 }
 
 const PageContentInfo = (props: PageContentInfoProps) => {
-  const MOBILE = useCheckMobile();
-
-  const { contentInfoData, IndivContentId, articleUrl } = props;
+  const { contentInfoData, IndivContentId, articleUrl, isMobile } = props;
 
   const ifContent = useGetIfContentPage();
   if (!contentInfoData) return <LoadingLottie height={4} width={4} fit={false} />;
   const { title, description } = contentInfoData;
 
-  if (MOBILE)
+  if (isMobile)
     return (
       <ContentInfoContainer className="mobile">
         {ifContent ? (

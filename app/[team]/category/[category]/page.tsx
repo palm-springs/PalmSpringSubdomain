@@ -1,6 +1,7 @@
 // 선택 카테고리 별 페이지
 import React from 'react';
 import { Metadata } from 'next';
+import { headers } from 'next/headers';
 
 import { getMetaBlogInfo } from '@/apis/blog';
 import { getBlogArticleList, getBlogCategoryList, getBlogMainImg, getContentDetail } from '@/apis/blogHome';
@@ -50,14 +51,18 @@ const CategoryPage = async ({ params }: { params: { team: string } }) => {
 
   const singleArticleDetail = await getContentDetail(params.team, IndivContentId);
 
+  const headerList = headers();
+  const isDeviceMobile = headerList.get('x-is-mobile') === 'true';
+
   return (
     <ArticleContainer
       articleListData={articleData}
       thumbnail={thumbnail}
       description={description}
       blogName={blogName}
-      filteredCategoryList={filteredCategoryList}
+      categoryList={filteredCategoryList}
       singleArticleDetail={singleArticleDetail}
+      isDeviceMobile={isDeviceMobile}
     />
   );
 };

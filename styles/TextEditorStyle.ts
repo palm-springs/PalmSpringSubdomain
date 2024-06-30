@@ -6,44 +6,60 @@ export const TextEditorStyle = styled.div`
   .ProseMirror {
     margin: 4rem auto 0;
     width: 72.2rem;
+    color: #333d4b;
     * {
       word-wrap: break-word;
     }
 
     p {
       ${({ theme }) => theme.fonts.Body1_Regular};
-      padding-bottom: 0.8rem;
+      margin: 2.4rem 0 0.8rem 0;
       width: 72rem;
     }
 
     h1 {
       ${({ theme }) => theme.editor.Edit_h1};
-      padding: 5.6rem 0 0.4rem 0;
+      margin: 5.6rem 0 0.4rem 0;
       width: 72rem;
+      color: ${({ theme }) => theme.colors.grey_950};
     }
 
     h2 {
       ${({ theme }) => theme.editor.Edit_h2};
-      padding: 4rem 0 0.4rem 0;
+      margin: 4rem 0 0.4rem 0;
       width: 72rem;
+      color: ${({ theme }) => theme.colors.grey_950};
     }
 
     h3 {
       ${({ theme }) => theme.editor.Edit_h3};
-      padding: 2.4rem 0 0.4rem;
+      margin: 2.4rem 0 0.4rem;
       width: 72rem;
+      color: ${({ theme }) => theme.colors.grey_950};
     }
 
     ul {
-      margin-left: 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin: 2.4rem 0 0.4rem 4rem;
       width: 72rem;
       list-style-type: disc;
     }
 
     ol {
-      margin-left: 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin: 2.4rem 0 0.4rem 4rem;
       width: 72rem;
       list-style-type: decimal;
+    }
+
+    li {
+      & > p {
+        margin: 0;
+      }
     }
 
     u {
@@ -231,12 +247,15 @@ export const TextEditorStyle = styled.div`
     }
 
     blockquote {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
       margin: 2.4rem 0 0.8rem 0;
       border-left: 2px solid ${({ theme }) => theme.colors.grey_900};
       padding-left: 1.8rem;
 
       p {
-        padding-top: 0.2rem;
+        margin: 0;
       }
     }
 
@@ -256,6 +275,10 @@ export const TextEditorStyle = styled.div`
       border-bottom: 0.8px solid ${({ theme }) => theme.colors.grey_700};
       text-decoration: none;
       color: ${({ theme }) => theme.colors.grey_700};
+      &:hover {
+        border-color: #0056b3;
+        color: #0056b3;
+      }
     }
   }
 

@@ -29,6 +29,7 @@ jobs:
           echo NEXT_PUBLIC_DOMAIN_NAME=${{ secrets.NEXT_PUBLIC_DOMAIN_NAME }} >> .env
           echo NEXT_PUBLIC_SHORT_NAME=${{ secrets.NEXT_PUBLIC_SHORT_NAME }} >> .env
           echo NEXT_SHARP_PATH=${{ secrets.NEXT_SHARP_PATH }} >> .env
+          echo NEXT_PUBLIC_GA_ID=${{ secrets.NEXT_PUBLIC_GA_ID }} >> .env
 
           cat .env
 

@@ -4,41 +4,51 @@ import { styled } from 'styled-components';
 
 export const MobileTextEditorStyle = styled.div`
   .ProseMirror {
+    color: #333d4b;
     * {
       word-wrap: break-word;
     }
 
     p {
       ${({ theme }) => theme.mobileFonts.Body1_Regular};
-      padding-bottom: 0.8rem;
+      margin: 2.4rem 0 0.8rem 0;
       width: calc(100vw - 4rem);
     }
 
     h1 {
       ${({ theme }) => theme.mobileFonts.Markdown_H1};
-      padding: 4rem 0 0.4rem;
+      margin: 4rem 0 0.4rem;
       width: calc(100vw - 4rem);
+      color: ${({ theme }) => theme.colors.grey_950};
     }
 
     h2 {
       ${({ theme }) => theme.mobileFonts.Markdown_H2};
-      padding: 3.2 0 0.4rem;
+      margin: 3.2 0 0.4rem;
       width: calc(100vw - 4rem);
+      color: ${({ theme }) => theme.colors.grey_950};
     }
 
     h3 {
       ${({ theme }) => theme.mobileFonts.Markdown_H3};
-      padding: 2.4rem 0 0.4rem;
+      margin: 2.4rem 0 0.4rem;
       width: calc(100vw - 4rem);
+      color: ${({ theme }) => theme.colors.grey_950};
     }
 
     ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
       margin: 2.4rem 0 0.4rem 4rem;
       width: calc(100vw - 4rem);
       list-style-type: disc;
     }
 
     ol {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
       margin: 2.4rem 0 0.4rem 4rem;
       width: calc(100vw - 8rem);
       list-style-type: decimal;
@@ -142,6 +152,9 @@ export const MobileTextEditorStyle = styled.div`
     }
 
     blockquote {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
       margin: 2.4rem 0 0.8rem 0;
       border-left: 2px solid ${({ theme }) => theme.colors.grey_900};
       padding-left: 1.8rem;
@@ -149,7 +162,7 @@ export const MobileTextEditorStyle = styled.div`
       height: 100%;
 
       p {
-        padding-top: 0.2rem;
+        margin: 0;
         width: calc(100vw - 6rem);
       }
 
@@ -166,6 +179,7 @@ export const MobileTextEditorStyle = styled.div`
       width: calc(100vw - 10rem);
 
       & > p {
+        margin: 0;
         width: 100%;
       }
 
@@ -196,7 +210,7 @@ export const MobileTextEditorStyle = styled.div`
     }
 
     strong {
-      ${({ theme }) => theme.fonts.Body1_Semibold};
+      ${({ theme }) => theme.mobileFonts.Body1_Semibold};
       width: calc(100vw - 4rem);
     }
 
@@ -225,6 +239,10 @@ export const MobileTextEditorStyle = styled.div`
       width: calc(100vw - 4rem);
       text-decoration: none;
       color: ${({ theme }) => theme.colors.grey_700};
+      &:hover {
+        border-color: #0056b3;
+        color: #0056b3;
+      }
     }
   }
 `;

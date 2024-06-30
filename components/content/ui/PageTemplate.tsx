@@ -16,6 +16,7 @@ interface ContentTemplateProps {
     thumbnail: string;
     content: string;
   };
+  isDeviceMobile: boolean;
 }
 
 const PageTemplate = (props: ContentTemplateProps) => {
@@ -25,23 +26,24 @@ const PageTemplate = (props: ContentTemplateProps) => {
 
   const {
     data: { title, thumbnail, content },
+    isDeviceMobile,
   } = props;
 
-  const MOBILE = useCheckMobile();
+  const isMobile = useCheckMobile(isDeviceMobile);
 
   return (
-    <ContentPageContainer className={MOBILE ? 'mobile' : ''}>
+    <ContentPageContainer className={isMobile ? 'mobile' : ''}>
       {thumbnail && (
         <PageThumbnail
-          className={MOBILE ? 'mobile' : ''}
+          className={isMobile ? 'mobile' : ''}
           src={thumbnail}
           alt="page content thumbnail"
           width={720}
           height={405}
         />
       )}
-      <PageContentInfo contentInfoData={{ title }} />
-      {MOBILE ? <MobileContent content={content} /> : <Content content={content} />}
+      <PageContentInfo contentInfoData={{ title }} isMobile={isMobile} />
+      {isMobile ? <MobileContent content={content} /> : <Content content={content} />}
     </ContentPageContainer>
   );
 };

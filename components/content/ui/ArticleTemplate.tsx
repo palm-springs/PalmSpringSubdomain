@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import * as gtag from '@/hooks/useGtagEvents';
 
 import ContentInfo from '@/components/common/ContentInfo';
+import CopyLinkButton from '@/components/common/CopyLinkButton';
 import Content from '@/components/content/Content';
 import Bar from '@/components/content/ui/Bar';
 import Recommend from '@/components/content/ui/Recommend';
@@ -22,6 +23,7 @@ import MobileContent from '../MobileContent';
 interface ArticleTemplateProps {
   data: ContentProps;
   recommendedArticles: ArticleData[];
+  isDeviceMobile: boolean;
 }
 
 const ArticleTemplate = (props: ArticleTemplateProps) => {
@@ -32,9 +34,10 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
   const {
     data: { thumbnail, title, description, teamMember, content, id, blogId },
     recommendedArticles,
+    isDeviceMobile,
   } = props;
 
-  const MOBILE = useCheckMobile();
+  const isMobile = useCheckMobile(isDeviceMobile);
   const { team, contentUrl } = useParams();
 
   useEffect(() => {
@@ -60,7 +63,7 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
   };
 
   const ArticleMain = () => {
-    if (MOBILE)
+    if (isMobile)
       return (
         <ContentPageContainer className="mobile">
           {thumbnail ? (
@@ -75,12 +78,10 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
           ) : (
             <Blank />
           )}
-          <ContentInfo contentInfoData={{ title, description, teamMember }} />
+          <ContentInfo contentInfoData={{ title, description, teamMember }} isMobile={isMobile} />
           <MobileContent content={content} />
-          <LinkBtn className="mobile" type="button" onClick={copyCurrentUrl}>
-            아티클 링크 복사하기
-          </LinkBtn>
-          <Recommend data={recommendedArticles} />
+          <CopyLinkButton viewType="mobile" onClickAction={copyCurrentUrl} />
+          <Recommend data={recommendedArticles} isMobile={isMobile} />
         </ContentPageContainer>
       );
     else
@@ -88,9 +89,9 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
         <CommentContainer>
           <ContentPageContainer>
             {thumbnail && <ArticleThumbnail src={thumbnail} alt="article content thumbnail" width={720} height={405} />}
-            <ContentInfo contentInfoData={{ title, description, teamMember }} />
+            <ContentInfo contentInfoData={{ title, description, teamMember }} isMobile={isMobile} />
             <Content content={content} />
-            <LinkBtn onClick={copyCurrentUrl}>아티클 링크 복사하기</LinkBtn>
+            <CopyLinkButton viewType="" onClickAction={copyCurrentUrl} />
             <Bar />
             {team === 'forweber' && (
               <DiscussionEmbed
@@ -112,7 +113,7 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
                 }}
               />
             )}
-            <Recommend data={recommendedArticles} />
+            <Recommend data={recommendedArticles} isMobile={isMobile} />
           </ContentPageContainer>
         </CommentContainer>
       );
@@ -172,34 +173,5 @@ const ContentPageContainer = styled.section`
   &.mobile {
     margin: 0;
     width: 100vw;
-  }
-`;
-
-const LinkBtn = styled.button`
-  ${({ theme }) => theme.fonts.Button_medium};
-  display: flex;
-  align-items: center;
-
-  margin: 6rem 0 5.8rem;
-
-  border: none;
-  border-radius: 0.8rem;
-  background-color: ${({ theme }) => theme.colors.grey_200};
-  padding: 1rem 2rem;
-  width: 17.2rem;
-  height: 3.6rem;
-
-  color: ${({ theme }) => theme.colors.grey_900};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.grey_400};
-  }
-
-  &.mobile {
-    ${({ theme }) => theme.mobileFonts.Button};
-
-    margin: 4rem 0;
-    padding: 0 2rem;
-    height: 3.6rem;
   }
 `;

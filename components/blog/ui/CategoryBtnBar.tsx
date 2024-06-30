@@ -5,20 +5,19 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import styled from 'styled-components';
 
-import useCheckMobile from '@/hooks/useCheckMobile';
 import useGetCategory from '@/hooks/useGetCategory';
 
 interface CategoryBtnBarProps {
   LiteralList: string[];
+  isMobile: boolean;
 }
 const CategoryBtnBar = (props: CategoryBtnBarProps) => {
   const { category } = useParams();
-  const { LiteralList } = props;
+  const { LiteralList, isMobile } = props;
   const SELECTED = useGetCategory();
-  const MOBILE = useCheckMobile();
 
   const CATEGORY_LIST = LiteralList.map((eachCategory) => {
-    if (MOBILE)
+    if (isMobile)
       return (
         <MobileCategoryBtn
           href={`/category/${eachCategory}`}
@@ -38,7 +37,7 @@ const CategoryBtnBar = (props: CategoryBtnBarProps) => {
       );
   });
 
-  if (MOBILE)
+  if (isMobile)
     return (
       <CategoryBtnBarContainer className="mobile">
         <MobileCategoryBtn href={`/`} className={SELECTED === 'home' ? 'selected' : ''}>

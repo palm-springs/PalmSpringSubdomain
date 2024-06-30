@@ -10,7 +10,7 @@ const PageBtn = ({ children }: { children: React.ReactNode }) => {
 export default PageBtn;
 
 const PageBtnContainer = styled.button`
-  ${({ theme }) => theme.fonts.Body2_Semibold};
+  ${({ theme }) => theme.fonts.Body2_Regular};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,6 +21,7 @@ const PageBtnContainer = styled.button`
   text-overflow: ellipsis;
   white-space: nowrap;
   color: ${({ theme }) => theme.colors.grey_900};
+  font-weight: 500;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.navItem_hover};

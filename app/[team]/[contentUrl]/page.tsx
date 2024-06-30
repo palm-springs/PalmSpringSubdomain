@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { headers } from 'next/headers';
 
 import { getBlogArticleList, getContentDetail } from '@/apis/blogHome';
 import NotFound from '@/app/not-found';
@@ -60,18 +61,27 @@ const ContentPage = async ({ params }: { params: { team: string; contentUrl: str
 
   if (!contentDetailRes || !contentDetailRes.data) return <NotFound />;
 
+  const headerList = headers();
+  const isDeviceMobile = headerList.get('x-is-mobile') === 'true';
+
   // article일 때
   if (contentDetailRes.data.isArticle === true) {
     const recommendedArticles = await getBlogArticleList(params.team, '');
     if (!recommendedArticles) return null;
-    return <BlogMeta product={contentDetailRes.data} recommendedArticles={recommendedArticles.data} />;
+    return (
+      <BlogMeta
+        product={contentDetailRes.data}
+        recommendedArticles={recommendedArticles.data}
+        isDeviceMobile={isDeviceMobile}
+      />
+    );
   }
 
   // page일 때
   else if (contentDetailRes.data.isArticle === false) {
     return (
       <>
-        <PageTemplate data={contentDetailRes.data} />
+        <PageTemplate data={contentDetailRes.data} isDeviceMobile={isDeviceMobile} />
       </>
     );
   }

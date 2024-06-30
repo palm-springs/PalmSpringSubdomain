@@ -23,8 +23,10 @@ const MobileContent = (prop: ContentProp) => {
 export default MobileContent;
 
 const ContentContainer = styled.section`
+  display: flex;
   position: relative !important;
+  flex-direction: column;
 
   margin-top: 4rem;
-  width: calc(100vw - 4rem);
+  padding: 0 2rem;
 `;
