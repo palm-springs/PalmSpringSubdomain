@@ -1,11 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
 import useGetCategory from '@/hooks/useGetCategory';
+
 import { ArticleData } from '@/types/article';
 
 interface ArticleProps {
@@ -22,19 +24,21 @@ const Article = (props: ArticleProps) => {
   const selectedCategory = useGetCategory();
 
   return (
-    <ArticleContainer href={`/${articleUrl}`} className={noHover ? '' : 'hover'}>
-      <ArticleInfo $thumbnail={thumbnail ?? ''}>
-        <EditorInputTitle className="title">{title}</EditorInputTitle>
-        <ArticleDescription className="description">{description}</ArticleDescription>
-        <DetailBox>
-          {selectedCategory === 'home' && <CategoryBtn>{articleCategory.categoryName}</CategoryBtn>}
-          <ArticleDetail>{memberName}</ArticleDetail>
-          <Bar>|</Bar>
-          <ArticleDetail>{createdAt}</ArticleDetail>
-        </DetailBox>
-      </ArticleInfo>
-      {thumbnail && <ArticleThumbnail src={thumbnail} alt="Article Thumbnail" width={228} height={170} />}
-    </ArticleContainer>
+    <>
+      <ArticleContainer href={`/${articleUrl}`} className={noHover ? '' : 'hover'}>
+        <ArticleInfo $thumbnail={thumbnail ?? ''}>
+          <EditorInputTitle className="title">{title}</EditorInputTitle>
+          <ArticleDescription className="description">{description}</ArticleDescription>
+          <DetailBox>
+            {selectedCategory === 'home' && <CategoryBtn>{articleCategory.categoryName}</CategoryBtn>}
+            <ArticleDetail>{memberName}</ArticleDetail>
+            <Bar>|</Bar>
+            <ArticleDetail>{createdAt}</ArticleDetail>
+          </DetailBox>
+        </ArticleInfo>
+        {thumbnail && <ArticleThumbnail src={thumbnail} alt="Article Thumbnail" width={228} height={170} />}
+      </ArticleContainer>
+    </>
   );
 };
 

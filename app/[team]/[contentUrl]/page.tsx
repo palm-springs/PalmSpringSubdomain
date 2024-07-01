@@ -5,6 +5,7 @@ import { getBlogArticleList, getContentDetail } from '@/apis/blogHome';
 import NotFound from '@/app/not-found';
 import BlogMeta from '@/components/blog/BlogMeta';
 import PageTemplate from '@/components/content/ui/PageTemplate';
+import { useGetSingleArticleData } from '@/hooks/hooks/editor';
 
 type Props = {
   params: { team: string; contentUrl: string };
