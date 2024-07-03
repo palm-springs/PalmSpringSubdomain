@@ -6,7 +6,6 @@ import { DiscussionEmbed } from 'disqus-react';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import styled from 'styled-components';
-import * as gtag from '@/utils/getGtagEvents';
 
 import ContentInfo from '@/components/common/ContentInfo';
 import CopyLinkButton from '@/components/common/CopyLinkButton';
@@ -16,6 +15,7 @@ import Recommend from '@/components/content/ui/Recommend';
 import useCheckMobile from '@/hooks/useCheckMobile';
 import { ArticleData, SingleArticleData } from '@/types/article';
 import { ContentProps } from '@/types/content';
+import * as gtag from '@/utils/getGtagEvents';
 import { createToast } from '@/utils/lib/toast';
 
 import MobileContent from '../MobileContent';
@@ -93,25 +93,17 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
             <Content content={content} />
             <CopyLinkButton viewType="" onClickAction={copyCurrentUrl} />
             <Bar />
-            {team === 'forweber' && (
-              <DiscussionEmbed
-                shortname={process.env.NEXT_PUBLIC_SHORT_NAME}
-                config={{
-                  url: `https://${team}.${process.env.DOMAIN_NAME}/${contentUrl}`,
-                  identifier: String(contentUrl),
-                  title: title,
-                }}
-              />
-            )}
-            {team === 'init' && (
-              <DiscussionEmbed
-                shortname={process.env.NEXT_PUBLIC_SHORT_NAME}
-                config={{
-                  url: `https://${team}.${process.env.DOMAIN_NAME}/${contentUrl}`,
-                  identifier: String(contentUrl),
-                  title: title,
-                }}
-              />
+            {(team === 'forweber' || team === 'init') && (
+              <div style={{ marginBottom: '4rem' }}>
+                <DiscussionEmbed
+                  shortname={process.env.NEXT_PUBLIC_SHORT_NAME}
+                  config={{
+                    url: `https://${team}.${process.env.DOMAIN_NAME}/${contentUrl}`,
+                    identifier: String(contentUrl),
+                    title: title,
+                  }}
+                />
+              </div>
             )}
             <Recommend data={recommendedArticles} isMobile={isMobile} />
           </ContentPageContainer>
@@ -145,7 +137,7 @@ const CommentContainer = styled.div`
 
 const Blank = styled.div`
   width: 100vw;
-  height: 6rem;
+  height: 7.2rem;
 `;
 const ArticleThumbnail = styled(Image)`
   border-radius: 1.6rem;
@@ -157,7 +149,7 @@ const ArticleThumbnail = styled(Image)`
   object-fit: cover;
 
   &.mobile {
-    margin-top: 6rem;
+    margin-top: 7.2rem;
     border-radius: 0;
     width: 100%;
     height: calc(100vw * 9 / 16);

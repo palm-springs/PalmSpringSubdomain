@@ -96,7 +96,7 @@ const ContentInfoContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  margin-top: 12rem;
+  margin-top: 13.2rem;
   width: 100%;
 `;
 
@@ -115,6 +115,6 @@ const CategoryBtnWrapper = styled.div<{ $thumbnail: string | null }>`
   width: 100vw;
 
   &.mobile {
-    margin-top: ${({ $thumbnail }) => ($thumbnail ? 0 : '6rem')};
+    margin-top: ${({ $thumbnail }) => ($thumbnail ? 0 : '7.2rem')};
   }
 `;

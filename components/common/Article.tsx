@@ -7,7 +7,6 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import useGetCategory from '@/hooks/useGetCategory';
-
 import { ArticleData } from '@/types/article';
 
 interface ArticleProps {

@@ -59,7 +59,7 @@ const BlogInfo = styled.div`
 
 const BlogImgContainer = styled.div<{ $noArticle?: boolean }>`
   position: relative;
-  margin-top: 6rem;
+  margin-top: 7.2rem;
   /* padding-bottom: ${({ $noArticle }) => ($noArticle ? '22.3rem' : 0)}; */
   width: 100%;
 `;

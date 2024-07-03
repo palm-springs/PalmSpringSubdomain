@@ -15,12 +15,13 @@ const PageBtnContainer = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: 0.8rem;
-  padding: 1rem;
+  padding: 0.6rem 1.2rem;
   height: 3.6rem;
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
   color: ${({ theme }) => theme.colors.grey_900};
+  font-size: 1.4rem;
   font-weight: 500;
 
   &:hover {

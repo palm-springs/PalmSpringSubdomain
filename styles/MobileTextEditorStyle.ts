@@ -4,83 +4,72 @@ import { styled } from 'styled-components';
 
 export const MobileTextEditorStyle = styled.div`
   .ProseMirror {
+    width: 100vw;
     color: #333d4b;
+
+    /* 기본 */
     * {
       word-wrap: break-word;
     }
 
+    /* 문단 */
     p {
       ${({ theme }) => theme.mobileFonts.Body1_Regular};
-      margin: 2.4rem 0 0.8rem 0;
-      width: calc(100vw - 4rem);
+      margin: 0 0 1.2rem 0;
+      width: 100%;
     }
 
-    h1 {
-      ${({ theme }) => theme.mobileFonts.Markdown_H1};
-      margin: 4rem 0 0.4rem;
-      width: calc(100vw - 4rem);
-      color: ${({ theme }) => theme.colors.grey_950};
-    }
-
-    h2 {
-      ${({ theme }) => theme.mobileFonts.Markdown_H2};
-      margin: 3.2 0 0.4rem;
-      width: calc(100vw - 4rem);
-      color: ${({ theme }) => theme.colors.grey_950};
-    }
-
-    h3 {
-      ${({ theme }) => theme.mobileFonts.Markdown_H3};
-      margin: 2.4rem 0 0.4rem;
-      width: calc(100vw - 4rem);
-      color: ${({ theme }) => theme.colors.grey_950};
-    }
-
-    ul {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      margin: 2.4rem 0 0.4rem 4rem;
-      width: calc(100vw - 4rem);
-      list-style-type: disc;
-    }
-
+    /* 리스트 */
+    ul,
     ol {
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
-      margin: 2.4rem 0 0.4rem 4rem;
-      width: calc(100vw - 8rem);
+      gap: 0.8rem;
+      margin: 0 0 1.2rem 0;
+      padding: 0 1rem 0 2.4rem;
+      width: 100%;
+    }
+    ul {
+      list-style-type: disc;
+    }
+    ol {
       list-style-type: decimal;
     }
 
+    /* 코드 */
     code {
+      border: 1px solid ${({ theme }) => theme.colors.grey_400};
       border-radius: 0.25em;
       background-color: ${({ theme }) => theme.colors.grey_200};
       padding: 0.3rem 0.6rem;
-      box-decoration-break: clone;
+      width: 100%;
       overflow-x: scroll;
+      font-family: 'Fira Mono' !important;
+      font-size: 1.53rem;
+      font-weight: 400;
+      font-style: normal;
+      box-decoration-break: clone;
     }
 
     pre {
-      margin: 2.4rem 0 0.4rem;
+      margin: 1.2rem 0 2rem 0;
       border-radius: 0.5rem;
       background: ${({ theme }) => theme.colors.grey_100};
       padding: 1.6rem 2rem;
       width: 100%;
-      /* width: calc(100vw - 4rem); */
       max-width: calc(100vw - 4rem);
       /* 이거 코드블럭만 피라모노! */
       /* white-space: pre-wrap; */
       overflow-x: scroll;
       word-break: break-all;
       color: #383a41;
-      font-family: 'Fira Mono', monospace;
+      font-family: 'Fira Mono', monospace !important;
 
       code {
+        border: 0;
         background: none;
         padding: 0;
-        width: calc(100vw - 4rem);
+        /* width: calc(100vw - 4rem); 모바일 pre 태그 안에서는 어차피 좌우스크롤이기 때문에 width가 의미가 없음 */
         overflow-x: scroll;
         color: inherit;
         font-size: 1.4rem;
@@ -151,98 +140,121 @@ export const MobileTextEditorStyle = styled.div`
       }
     }
 
+    /* 인용 */
     blockquote {
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
-      margin: 2.4rem 0 0.8rem 0;
-      border-left: 2px solid ${({ theme }) => theme.colors.grey_900};
-      padding-left: 1.8rem;
-      width: calc(100vw - 4rem);
-      height: 100%;
+      gap: 0.8rem;
+      margin: 1.2rem 0 2rem 0;
+      border-left: 3px solid ${({ theme }) => theme.colors.grey_900};
+      background: ${({ theme }) => theme.colors.grey_100};
+      padding: 1.2rem 1.2rem 1.2rem 2rem;
+      width: 100%;
 
-      p {
+      & > * {
         margin: 0;
-        width: calc(100vw - 6rem);
       }
-
-      pre {
-        width: calc(100vw - 6rem);
-      }
-
       /* ul > li > p {
         width: calc(100vw - 10rem);
       } */
     }
 
-    li {
-      width: calc(100vw - 10rem);
-
-      & > p {
-        margin: 0;
-        width: 100%;
-      }
-
-      & > blockquote {
-        width: 100%;
-      }
-
-      & > blockquote > p {
-        width: 100%;
-      }
-
-      & > ul > li {
-        width: calc(100vw - 14rem);
-      }
-
-      & > ul > li > ul > li {
-        width: calc(100vw - 16rem);
-      }
-    }
-
+    /* 언더라인 */
     u {
       text-decoration: underline;
     }
 
+    /* 구분선 */
     hr {
+      margin: 1.2rem 0;
       border: 1px solid ${({ theme }) => theme.colors.grey_300};
-      width: calc(100vw - 4rem);
+      width: 100%;
     }
 
+    /* 볼드 */
     strong {
       ${({ theme }) => theme.mobileFonts.Body1_Semibold};
-      width: calc(100vw - 4rem);
     }
 
+    /* 취소선 */
     s {
-      width: calc(100vw - 4rem);
       text-decoration: line-through;
     }
 
+    /* 이탤릭 */
     em {
-      width: calc(100vw - 4rem);
       font-style: italic;
     }
 
+    /* 이미지 */
     img {
-      margin-top: 2.4rem 0 0.8rem 0;
-      width: calc(100vw - 4rem);
+      margin: 2rem 0;
+      border-radius: 12px;
+      width: 100%;
       height: auto;
-
-      &.ProseMirror-selectednode {
-        outline: 3px solid #68cef8;
-      }
     }
 
+    /* 링크 */
     a {
       border-bottom: 0.8px solid ${({ theme }) => theme.colors.grey_700};
-      width: calc(100vw - 4rem);
       text-decoration: none;
       color: ${({ theme }) => theme.colors.grey_700};
       &:hover {
         border-color: #0056b3;
         color: #0056b3;
       }
+    }
+
+    /* 헤딩 */
+    h1 {
+      ${({ theme }) => theme.mobileFonts.Markdown_H1};
+      margin: 4rem 0 0.8rem;
+      width: 100%;
+      color: ${({ theme }) => theme.colors.grey_950};
+      * {
+        ${({ theme }) => theme.mobileFonts.Markdown_H1};
+        color: ${({ theme }) => theme.colors.grey_950};
+      }
+    }
+
+    h2 {
+      ${({ theme }) => theme.mobileFonts.Markdown_H2};
+      margin: 3.2rem 0 0.8rem;
+      width: 100%;
+      color: ${({ theme }) => theme.colors.grey_950};
+      * {
+        ${({ theme }) => theme.mobileFonts.Markdown_H2};
+        color: ${({ theme }) => theme.colors.grey_950};
+      }
+    }
+
+    h3 {
+      ${({ theme }) => theme.mobileFonts.Markdown_H3};
+      margin: 2.4rem 0 0.8rem;
+      width: 100%;
+      color: ${({ theme }) => theme.colors.grey_950};
+      * {
+        ${({ theme }) => theme.mobileFonts.Markdown_H3};
+        color: ${({ theme }) => theme.colors.grey_950};
+      }
+    }
+
+    /* 리스트 아이템 */
+    li {
+      width: 100%;
+      & > p:nth-of-type(1) {
+        margin: 0;
+      }
+      & > * {
+        margin: 0.8rem 0 0 0;
+      }
+      & > *:not(:first-child):last-child {
+        margin-bottom: 0.4rem;
+      }
+    }
+
+    .ProseMirror-separator {
+      display: none;
     }
   }
 `;
