@@ -94,7 +94,7 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
             <CopyLinkButton viewType="" onClickAction={copyCurrentUrl} />
             <Bar />
             {(team === 'forweber' || team === 'init') && (
-              <div style={{ marginBottom: '4rem' }}>
+              <DiscussionEmbedContainer>
                 <DiscussionEmbed
                   shortname={process.env.NEXT_PUBLIC_SHORT_NAME}
                   config={{
@@ -103,7 +103,7 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
                     title: title,
                   }}
                 />
-              </div>
+              </DiscussionEmbedContainer>
             )}
             <Recommend data={recommendedArticles} isMobile={isMobile} />
           </ContentPageContainer>
@@ -166,4 +166,7 @@ const ContentPageContainer = styled.section`
     margin: 0;
     width: 100vw;
   }
+`;
+const DiscussionEmbedContainer = styled.div`
+  margin-bottom: 4rem;
 `;

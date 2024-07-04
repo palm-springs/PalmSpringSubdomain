@@ -14,12 +14,12 @@ import SideBar from './SideBar';
 const BlogHeader = (props: HeaderProps) => {
   const { logo, blogName, navList, isDeviceMobile } = props;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [ifScrollPositionZero, setIfScrollPositionZero] = useState(true);
+  const [ifScrollPositionZero, setIfScrollPositionZero] = useState<boolean>(true);
 
   useEffect(() => {
     const handleScroll = () => {
       const position = window.scrollY;
-      setIfScrollPositionZero(position == 0);
+      setIfScrollPositionZero(position === 0);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -74,23 +74,17 @@ const BlogHeaderContainer = styled.div<{ $ifscrollpositionzero: boolean }>`
   align-items: center;
   justify-content: space-between;
   transition: height 300ms cubic-bezier(0.31, 0.27, 0.15, 0.99) 0s;
-  /* backdrop-filter: blur(18px); */
   z-index: 10;
   border-bottom: 1px solid ${({ theme }) => theme.colors.grey_300};
 
-  /* background-color: rgba(255, 255, 255, 0.75); */
   background: ${({ theme }) => theme.colors.grey_0};
-  /* padding: 1.2rem max(calc((100vw - 100rem) / 2), 2.4rem); */
   padding: 0 max(calc((100vw - 100rem) / 2), 2.4rem);
   width: 100vw;
   min-width: 72rem;
   height: 6rem;
-  ${({ $ifscrollpositionzero }) => $ifscrollpositionzero == true && `height:7.2rem;border-color:transparent;`}
+  ${({ $ifscrollpositionzero }) => $ifscrollpositionzero && `height:7.2rem;border-color:transparent;`}
 
   &.mobile {
-    /* stylelint-disable-next-line property-no-vendor-prefix */
-    /* -webkit-backdrop-filter: blur(18px); */
-    /* backdrop-filter: blur(18px); */
     padding: 0 1.6rem 0 2.4rem;
     min-width: 0;
   }
