@@ -33,7 +33,7 @@ const PageTemplate = (props: ContentTemplateProps) => {
 
   return (
     <ContentPageContainer className={isMobile ? 'mobile' : ''}>
-      {thumbnail && (
+      {thumbnail ? (
         <PageThumbnail
           className={isMobile ? 'mobile' : ''}
           src={thumbnail}
@@ -41,6 +41,8 @@ const PageTemplate = (props: ContentTemplateProps) => {
           width={720}
           height={405}
         />
+      ) : (
+        isMobile && <Blank />
       )}
       <PageContentInfo contentInfoData={{ title }} isMobile={isMobile} />
       {isMobile ? <MobileContent content={content} /> : <Content content={content} />}
@@ -75,7 +77,12 @@ const ContentPageContainer = styled.section`
   margin: 12rem 36rem;
 
   &.mobile {
-    margin: 0;
+    margin: 0 0 6rem 0;
     width: 100%;
   }
+`;
+
+const Blank = styled.div`
+  width: 100vw;
+  height: 7.2rem;
 `;

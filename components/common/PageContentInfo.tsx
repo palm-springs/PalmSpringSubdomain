@@ -104,7 +104,6 @@ const TitleBox = styled.h1`
   color: ${({ theme }) => theme.colors.grey_950};
 
   &.mobile {
-    margin-top: 6rem;
     ${({ theme }) => theme.mobileFonts.Title1};
   }
 `;

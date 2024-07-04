@@ -35,6 +35,7 @@ const NavLink = styled(Link)`
   text-overflow: ellipsis;
   word-break: break-all;
   color: ${({ theme }) => theme.colors.grey_900};
+  font-size: 1.5rem;
 
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -48,7 +49,7 @@ const BlogNavContainer = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  width: 26.6rem;
+  width: 100%;
 `;
 
 const NavBtn = styled.button`

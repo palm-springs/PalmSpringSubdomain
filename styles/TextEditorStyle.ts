@@ -4,90 +4,47 @@ import { styled } from 'styled-components';
 
 export const TextEditorStyle = styled.div`
   .ProseMirror {
-    margin: 4rem auto 0;
-    width: 72.2rem;
+    margin: 4.8rem auto 0;
+    width: 72rem;
     color: #333d4b;
+
+    /* 기본 */
     * {
       word-wrap: break-word;
     }
 
+    /* 문단 */
     p {
       ${({ theme }) => theme.fonts.Body1_Regular};
-      margin: 2.4rem 0 0.8rem 0;
-      width: 72rem;
+      /* margin: 2.4rem 0 0.8rem 0; */
+      margin: 0 0 1.2rem 0;
+      width: 100%;
     }
 
-    h1 {
-      ${({ theme }) => theme.editor.Edit_h1};
-      margin: 5.6rem 0 0.4rem 0;
-      width: 72rem;
-      color: ${({ theme }) => theme.colors.grey_950};
-    }
-
-    h2 {
-      ${({ theme }) => theme.editor.Edit_h2};
-      margin: 4rem 0 0.4rem 0;
-      width: 72rem;
-      color: ${({ theme }) => theme.colors.grey_950};
-    }
-
-    h3 {
-      ${({ theme }) => theme.editor.Edit_h3};
-      margin: 2.4rem 0 0.4rem;
-      width: 72rem;
-      color: ${({ theme }) => theme.colors.grey_950};
-    }
-
+    /* 리스트 */
+    ol,
     ul {
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
-      margin: 2.4rem 0 0.4rem 4rem;
-      width: 72rem;
+      gap: 0.8rem;
+      margin: 0 0 1.2rem 0;
+      padding: 0 1rem 0 3.2rem;
+      width: 100%;
+    }
+    ul {
       list-style-type: disc;
     }
-
     ol {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      margin: 2.4rem 0 0.4rem 4rem;
-      width: 72rem;
       list-style-type: decimal;
     }
 
-    li {
-      & > p {
-        margin: 0;
-      }
-    }
-
-    u {
-      width: 72rem;
-      text-decoration: underline;
-    }
-
-    hr {
-      border: 1px solid ${({ theme }) => theme.colors.grey_300};
-      width: 100%;
-    }
-    strong {
-      ${({ theme }) => theme.fonts.Body1_Semibold};
-    }
-
-    s {
-      text-decoration: line-through;
-    }
-
-    em {
-      font-style: italic;
-    }
-
+    /* 코드 */
     code {
+      border: 1px solid ${({ theme }) => theme.colors.grey_400};
       border-radius: 0.25em;
       background-color: ${({ theme }) => theme.colors.grey_200};
       padding: 0.3rem 0.6rem;
-      width: 72rem;
+      width: 100%;
       line-height: 2.601rem;
       letter-spacing: -0.0072rem;
       font-family: 'Fira Mono' !important;
@@ -98,11 +55,11 @@ export const TextEditorStyle = styled.div`
     }
 
     pre {
-      margin: 2.016rem 0 0.8rem;
+      margin: 1.2rem 0 2rem 0;
       border-radius: 0.5rem;
       background: ${({ theme }) => theme.colors.grey_100};
       padding: 1.6rem 2rem;
-      width: 72rem;
+      width: 100%;
       line-height: 2.601rem;
       letter-spacing: -0.0072rem;
       white-space: pre-wrap;
@@ -111,13 +68,14 @@ export const TextEditorStyle = styled.div`
       font-family: 'Fira Mono' !important;
       font-size: 1.4rem;
       font-weight: 400;
+
       code {
+        border: 0;
         background: none;
         padding: 0;
         line-height: 2.601rem;
         letter-spacing: -0.0072rem;
         color: inherit;
-        font-family: 'Fira Mono' !important;
         font-size: 1.4rem;
         font-weight: 400;
       }
@@ -246,31 +204,59 @@ export const TextEditorStyle = styled.div`
       }
     }
 
+    /* 인용 */
     blockquote {
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
-      margin: 2.4rem 0 0.8rem 0;
-      border-left: 2px solid ${({ theme }) => theme.colors.grey_900};
-      padding-left: 1.8rem;
+      gap: 0.8rem;
+      margin: 1.2rem 0 2rem 0;
+      border-left: 3px solid ${({ theme }) => theme.colors.grey_900};
+      background: ${({ theme }) => theme.colors.grey_100};
+      padding: 1.2rem 1.2rem 1.2rem 2rem;
+      width: 100%;
 
-      p {
+      & > * {
         margin: 0;
       }
     }
 
+    /* 언더라인 */
+    u {
+      width: 100%;
+      text-decoration: underline;
+    }
+
+    /* 구분선 */
+    hr {
+      margin: 1.2rem 0;
+      border: 1px solid ${({ theme }) => theme.colors.grey_300};
+      width: 100%;
+    }
+
+    /* 볼드 */
+    strong {
+      ${({ theme }) => theme.fonts.Body1_Semibold};
+    }
+
+    /* 취소선 */
+    s {
+      text-decoration: line-through;
+    }
+
+    /* 이탤릭 */
+    em {
+      font-style: italic;
+    }
+
+    /* 이미지 */
     img {
-      margin-top: 2.4rem 0 0.8rem 0;
+      margin: 2rem 0;
       border-radius: 16px;
       width: 100%;
       height: auto;
-
-      &.ProseMirror-selectednode {
-        border: 2px solid ${({ theme }) => theme.colors.green};
-        border-radius: 16px;
-      }
     }
 
+    /* 링크 */
     a {
       border-bottom: 0.8px solid ${({ theme }) => theme.colors.grey_700};
       text-decoration: none;
@@ -280,11 +266,57 @@ export const TextEditorStyle = styled.div`
         color: #0056b3;
       }
     }
-  }
 
-  &.editor > .ProseMirror {
-    * {
-      font-family: sans-serif;
+    /* 헤딩 */
+    h1 {
+      ${({ theme }) => theme.editor.Edit_h1};
+      margin: 5.6rem 0 1.2rem 0;
+      width: 100%;
+      color: ${({ theme }) => theme.colors.grey_950};
+      * {
+        ${({ theme }) => theme.editor.Edit_h1};
+        color: ${({ theme }) => theme.colors.grey_950};
+      }
+    }
+
+    h2 {
+      ${({ theme }) => theme.editor.Edit_h2};
+      margin: 4rem 0 1.2rem 0;
+      width: 100%;
+      color: ${({ theme }) => theme.colors.grey_950};
+      * {
+        ${({ theme }) => theme.editor.Edit_h2};
+        color: ${({ theme }) => theme.colors.grey_950};
+      }
+    }
+
+    h3 {
+      ${({ theme }) => theme.editor.Edit_h3};
+      margin: 2.4rem 0 1.2rem;
+      width: 100%;
+      color: ${({ theme }) => theme.colors.grey_950};
+      * {
+        ${({ theme }) => theme.editor.Edit_h3};
+        color: ${({ theme }) => theme.colors.grey_950};
+      }
+    }
+
+    /* 리스트 아이템 */
+    li {
+      width: 100%;
+      & > p:nth-of-type(1) {
+        margin: 0;
+      }
+      & > * {
+        margin: 0.8rem 0 0 0;
+      }
+      & > *:not(:first-child):last-child {
+        margin-bottom: 0.4rem;
+      }
+    }
+
+    .ProseMirror-separator {
+      display: none;
     }
   }
 `;

@@ -37,7 +37,7 @@ export default BlogNav;
 
 const BlogNavContainer = styled.div`
   display: flex;
-  gap: 1.6rem;
+  gap: 1rem;
   align-items: center;
   justify-content: space-between;
 

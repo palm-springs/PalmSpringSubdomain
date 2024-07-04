@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import useCheckMobile from '@/hooks/useCheckMobile';
@@ -14,6 +14,20 @@ import SideBar from './SideBar';
 const BlogHeader = (props: HeaderProps) => {
   const { logo, blogName, navList, isDeviceMobile } = props;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [ifScrollPositionZero, setIfScrollPositionZero] = useState<boolean>(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.scrollY;
+      setIfScrollPositionZero(position === 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const isMobile = useCheckMobile(isDeviceMobile);
 
@@ -21,7 +35,7 @@ const BlogHeader = (props: HeaderProps) => {
 
   if (isMobile)
     return (
-      <BlogHeaderContainer className="mobile">
+      <BlogHeaderContainer className="mobile" $ifscrollpositionzero={ifScrollPositionZero}>
         <HeaderLogo logo={logo} blogName={blogName} />
         <BlurBackground className={isMenuOpen ? 'blur' : ''} onClick={sidebarToggle} />
         <SideBar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} navList={navList} />
@@ -30,7 +44,7 @@ const BlogHeader = (props: HeaderProps) => {
     );
   else
     return (
-      <BlogHeaderContainer>
+      <BlogHeaderContainer $ifscrollpositionzero={ifScrollPositionZero}>
         <HeaderLogo logo={logo} blogName={blogName} />
         <BlogNav blogName={blogName} navList={navList} />
       </BlogHeaderContainer>
@@ -40,11 +54,11 @@ const BlogHeader = (props: HeaderProps) => {
 export default BlogHeader;
 
 const BlurBackground = styled.div`
+  transition: 0.2s ease-in-out;
   &.blur {
     position: fixed;
     top: 0;
     right: 0;
-    transition: 0.1ms ease-in-out;
     opacity: 1;
     z-index: 2;
     background-color: rgba(64, 71, 79, 0.5);
@@ -53,27 +67,25 @@ const BlurBackground = styled.div`
   }
 `;
 
-const BlogHeaderContainer = styled.div`
+const BlogHeaderContainer = styled.div<{ $ifscrollpositionzero: boolean }>`
   display: flex;
   position: fixed;
   top: 0;
   align-items: center;
   justify-content: space-between;
-  backdrop-filter: blur(18px);
+  transition: height 300ms cubic-bezier(0.31, 0.27, 0.15, 0.99) 0s;
   z-index: 10;
-
   border-bottom: 1px solid ${({ theme }) => theme.colors.grey_300};
-  background-color: rgba(255, 255, 255, 0.75);
-  padding: 1.2rem max(calc((100vw - 100rem) / 2), 2.4rem);
+
+  background: ${({ theme }) => theme.colors.grey_0};
+  padding: 0 max(calc((100vw - 100rem) / 2), 2.4rem);
   width: 100vw;
   min-width: 72rem;
   height: 6rem;
+  ${({ $ifscrollpositionzero }) => $ifscrollpositionzero && `height:7.2rem;border-color:transparent;`}
 
   &.mobile {
-    /* stylelint-disable-next-line property-no-vendor-prefix */
-    -webkit-backdrop-filter: blur(18px);
-    justify-content: space-between;
-    padding: 1.2rem 1.6rem 1.2rem 2.4rem;
+    padding: 0 1.6rem 0 2.4rem;
     min-width: 0;
   }
 `;

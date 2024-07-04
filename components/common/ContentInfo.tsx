@@ -211,7 +211,7 @@ const WriterInfo = styled(Link)`
   justify-content: flex-start;
 
   &.mobile {
-    gap: 0.8rem;
+    gap: 1.2rem;
   }
 `;
 

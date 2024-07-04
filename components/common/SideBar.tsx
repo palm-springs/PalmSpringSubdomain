@@ -66,16 +66,15 @@ const SideBarWrapper = styled.div`
   transition: 0.3s ease-in-out;
   z-index: 5;
   background-color: ${({ theme }) => theme.colors.grey_0};
-  width: 26.6rem;
+  width: 80vw;
   height: 100vh;
 
   &.closed {
-    right: -26.6rem;
+    right: -80vw;
   }
 
   &.open {
     right: 0;
-    transition: 0.3s ease-in-out;
   }
 `;
 const SideBarHeader = styled.div`
