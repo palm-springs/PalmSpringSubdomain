@@ -19,7 +19,7 @@ const BlogHeader = (props: HeaderProps) => {
   useEffect(() => {
     const handleScroll = () => {
       const position = window.scrollY;
-      setIfScrollPositionZero(position === 0);
+      setIfScrollPositionZero(position <= 0);
     };
 
     window.addEventListener('scroll', handleScroll);
