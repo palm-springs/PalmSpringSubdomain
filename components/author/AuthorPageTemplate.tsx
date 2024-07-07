@@ -4,6 +4,8 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import useCheckMobile from '@/hooks/useCheckMobile';
+import { GtmEventParametersObject } from '@/types/gtmEventParameters';
+import { gtmEventViewAuthor } from '@/utils/getGtmEvents';
 
 import ArticleList from '../common/ArticleList';
 
@@ -18,6 +20,7 @@ interface AuthorPageTemplateProps {
     articles: [];
   };
   isDeviceMobile: boolean;
+  gtmEventObject: GtmEventParametersObject;
 }
 
 const AuthorPageTemplate = (props: AuthorPageTemplateProps) => {
@@ -28,7 +31,12 @@ const AuthorPageTemplate = (props: AuthorPageTemplateProps) => {
   const {
     authorData: { thumbnail, nickname, job, description, articles },
     isDeviceMobile,
+    gtmEventObject,
   } = props;
+
+  useEffect(() => {
+    gtmEventViewAuthor(gtmEventObject);
+  }, []);
 
   const isMobile = useCheckMobile(isDeviceMobile);
 
