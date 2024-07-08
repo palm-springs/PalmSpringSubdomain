@@ -15,7 +15,8 @@ import Recommend from '@/components/content/ui/Recommend';
 import useCheckMobile from '@/hooks/useCheckMobile';
 import { ArticleData, SingleArticleData } from '@/types/article';
 import { ContentProps } from '@/types/content';
-import * as gtag from '@/utils/getGtagEvents';
+import { GtmEventParametersObject } from '@/types/gtmEventParameters';
+import { gtmEventViewArticle } from '@/utils/getGtmEvents';
 import { createToast } from '@/utils/lib/toast';
 
 import MobileContent from '../MobileContent';
@@ -24,6 +25,7 @@ interface ArticleTemplateProps {
   data: ContentProps;
   recommendedArticles: ArticleData[];
   isDeviceMobile: boolean;
+  gtmEventObject: GtmEventParametersObject;
 }
 
 const ArticleTemplate = (props: ArticleTemplateProps) => {
@@ -32,9 +34,10 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
   }, []);
 
   const {
-    data: { thumbnail, title, description, teamMember, content, id, blogId },
+    data: { thumbnail, title, description, teamMember, content },
     recommendedArticles,
     isDeviceMobile,
+    gtmEventObject,
   } = props;
 
   const isMobile = useCheckMobile(isDeviceMobile);
@@ -42,14 +45,7 @@ const ArticleTemplate = (props: ArticleTemplateProps) => {
 
   useEffect(() => {
     if (title) {
-      gtag.event({
-        action: 'Page View',
-        category: 'Blog View',
-        label: title,
-        value: 1,
-        article_identifier: id,
-        blog_identifier: blogId,
-      });
+      gtmEventViewArticle(gtmEventObject);
     }
   }, []);
 

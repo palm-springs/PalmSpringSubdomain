@@ -1,9 +1,7 @@
+import { GoogleTagManager } from '@next/third-parties/google';
 import { Metadata } from 'next';
-import Script from 'next/script';
 
 import Layout from '@/components/Layout';
-
-export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://palms.blog'),
@@ -21,23 +19,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      {/* GA4 스크립트를 비동기로 로드 */}
-      <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
-      {/* window.dataLayer를 초기화하고, gtag 함수를 정의하여 dataLayer에 데이터를 푸시 */}
-      <Script
-        id="ga4_init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${GA_MEASUREMENT_ID}', {
-            page_path: window.location.pathname
-          });
-        `,
-        }}
-      />
+      <GoogleTagManager gtmId="GTM-W5F85958" />
       <Layout>{children}</Layout>
     </html>
   );

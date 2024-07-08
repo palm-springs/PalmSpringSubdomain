@@ -63,6 +63,12 @@ const ContentPage = async ({ params }: { params: { team: string; contentUrl: str
 
   const headerList = headers();
   const isDeviceMobile = headerList.get('x-is-mobile') === 'true';
+  const server_referrer = headerList.get('referer') || '';
+  const gtmEventObject = {
+    article_identifier: contentDetailRes.data.id,
+    blog_identifier: contentDetailRes.data.blogId,
+    server_referrer: server_referrer,
+  };
 
   // article일 때
   if (contentDetailRes.data.isArticle === true) {
@@ -73,6 +79,7 @@ const ContentPage = async ({ params }: { params: { team: string; contentUrl: str
         product={contentDetailRes.data}
         recommendedArticles={recommendedArticles.data}
         isDeviceMobile={isDeviceMobile}
+        gtmEventObject={gtmEventObject}
       />
     );
   }
@@ -81,7 +88,7 @@ const ContentPage = async ({ params }: { params: { team: string; contentUrl: str
   else if (contentDetailRes.data.isArticle === false) {
     return (
       <>
-        <PageTemplate data={contentDetailRes.data} isDeviceMobile={isDeviceMobile} />
+        <PageTemplate data={contentDetailRes.data} isDeviceMobile={isDeviceMobile} gtmEventObject={gtmEventObject} />
       </>
     );
   }

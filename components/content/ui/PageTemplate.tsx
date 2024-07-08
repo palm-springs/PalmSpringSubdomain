@@ -7,6 +7,8 @@ import styled from 'styled-components';
 import PageContentInfo from '@/components/common/PageContentInfo';
 import Content from '@/components/content/Content';
 import useCheckMobile from '@/hooks/useCheckMobile';
+import { GtmEventParametersObject } from '@/types/gtmEventParameters';
+import { gtmEventViewPage } from '@/utils/getGtmEvents';
 
 import MobileContent from '../MobileContent';
 
@@ -17,6 +19,7 @@ interface ContentTemplateProps {
     content: string;
   };
   isDeviceMobile: boolean;
+  gtmEventObject: GtmEventParametersObject;
 }
 
 const PageTemplate = (props: ContentTemplateProps) => {
@@ -27,7 +30,14 @@ const PageTemplate = (props: ContentTemplateProps) => {
   const {
     data: { title, thumbnail, content },
     isDeviceMobile,
+    gtmEventObject,
   } = props;
+
+  useEffect(() => {
+    if (title) {
+      gtmEventViewPage(gtmEventObject);
+    }
+  }, []);
 
   const isMobile = useCheckMobile(isDeviceMobile);
 

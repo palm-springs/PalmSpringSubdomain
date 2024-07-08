@@ -47,7 +47,7 @@ const BlogMainPage = async ({ params }: { params: { team: string } }) => {
   if (!blogMainRes || !blogArticleRes || blogMainRes.code === 404 || blogArticleRes.code === 404) return <NotFound />;
 
   const {
-    data: { thumbnail, description, blogName },
+    data: { id, thumbnail, description, blogName },
   } = blogMainRes;
 
   const { data: articleListData } = blogArticleRes;
@@ -57,6 +57,11 @@ const BlogMainPage = async ({ params }: { params: { team: string } }) => {
 
   const headerList = headers();
   const isDeviceMobile = headerList.get('x-is-mobile') === 'true';
+  const server_referrer = headerList.get('referer') || '';
+  const gtmEventObject = {
+    blog_identifier: id,
+    server_referrer: server_referrer,
+  };
 
   const ArticleContainerProps = {
     articleListData,
@@ -66,6 +71,7 @@ const BlogMainPage = async ({ params }: { params: { team: string } }) => {
     categoryList,
     singleArticleDetail,
     isDeviceMobile,
+    gtmEventObject,
   };
 
   return <ArticleContainer {...ArticleContainerProps} />;

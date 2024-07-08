@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import LoadingLottie from '@/components/common/ui/LoadingLottie';
 import useCheckMobile from '@/hooks/useCheckMobile';
@@ -9,6 +9,8 @@ import { ArticleData } from '@/types/article';
 import { Response } from '@/types/common';
 import { ContentProps } from '@/types/content';
 import { CategoryListProps } from '@/types/dashboard';
+import { GtmEventParametersObject } from '@/types/gtmEventParameters';
+import { gtmEventViewMain } from '@/utils/getGtmEvents';
 import { getLiteralCategoryList } from '@/utils/getLiteralCategoryList';
 
 import BlogImg from '../BlogImg';
@@ -24,12 +26,25 @@ interface ArticleContainerProps {
   categoryList: Response<CategoryListProps[]>;
   singleArticleDetail: Response<ContentProps> | null;
   isDeviceMobile: boolean;
+  gtmEventObject: GtmEventParametersObject;
 }
 
 // 각 상황에 대한 렌더링 ui 결정
 const ArticleContainer = (props: ArticleContainerProps) => {
-  const { isDeviceMobile, articleListData, thumbnail, description, blogName, categoryList, singleArticleDetail } =
-    props;
+  const {
+    isDeviceMobile,
+    articleListData,
+    thumbnail,
+    description,
+    blogName,
+    categoryList,
+    singleArticleDetail,
+    gtmEventObject,
+  } = props;
+
+  useEffect(() => {
+    gtmEventViewMain(gtmEventObject);
+  }, []);
 
   //초기값 세팅 및 브라우저 resize에 따른 반응형 업데이트
   const isMobile = useCheckMobile(isDeviceMobile);
