@@ -97,8 +97,8 @@ const ArticleMockThumbnail = styled.div`
 `;
 
 const ArticleContainer = styled(Link)`
+  ${({ theme }) => theme.transitions.Expand};
   display: flex;
-  position: relative;
   flex-direction: column;
   gap: 2rem;
   justify-content: flex-start;
@@ -106,25 +106,6 @@ const ArticleContainer = styled(Link)`
   padding: 1.2rem 1.2rem 1.6rem 1.2rem;
 
   width: 100%;
-
-  &::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: scale(0.97);
-    transition: 0.15s;
-    opacity: 0;
-    border-radius: inherit;
-    background-color: ${({ theme }) => theme.colors.grey_700};
-    width: 100%;
-    height: 100%;
-    content: '';
-    pointer-events: none;
-  }
-  &:hover::before {
-    transform: none;
-    opacity: 0.1;
-  }
 
   /* &.hover {
     transform: translateY(0.8rem);

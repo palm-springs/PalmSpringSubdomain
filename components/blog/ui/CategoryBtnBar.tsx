@@ -78,6 +78,7 @@ const CategoryBtnDefault = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 0.15s ease-in-out;
   border: none;
   background-color: ${({ theme }) => theme.colors.grey_300};
   white-space: nowrap;

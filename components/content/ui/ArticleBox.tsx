@@ -30,10 +30,14 @@ const ArticleBoxContainer = styled.section`
   grid-template-columns: repeat(2, 1fr);
   grid-row-gap: 2.8rem;
   grid-column-gap: 2.4rem;
-  width: 100%;
+  margin-left: -1.2rem;
+  width: calc(100% + 2.4rem);
 
   &.mobile {
     grid-template-columns: repeat(1, 1fr);
+    margin-top: 1.4rem;
+    margin-left: unset;
+    width: 100%;
   }
 
   @media (max-width: 1280px) {

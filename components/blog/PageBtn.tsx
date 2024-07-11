@@ -11,6 +11,7 @@ export default PageBtn;
 
 const PageBtnContainer = styled.button`
   ${({ theme }) => theme.fonts.Body2_Regular};
+  ${({ theme }) => theme.transitions.Expand};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,9 +25,6 @@ const PageBtnContainer = styled.button`
   font-size: 1.4rem;
   font-weight: 500;
 
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.navItem_hover};
-  }
   @media screen and (max-width: 768px) {
     display: none;
   }

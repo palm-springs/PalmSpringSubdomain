@@ -126,6 +126,7 @@ const fonts = {
     font-style: normal;
   `,
   Button_large: css`
+    transition: 0.2s ease-in-out;
     letter-spacing: -0.0025em;
     font-family: 'Pretendard';
     font-size: 1.8rem;
@@ -134,6 +135,7 @@ const fonts = {
   `,
 
   Button_medium: css`
+    transition: 0.2s ease-in-out;
     letter-spacing: -0.003125em;
     font-family: 'Pretendard';
     font-size: 1.6rem;
@@ -141,6 +143,7 @@ const fonts = {
     font-style: normal;
   `,
   Button_small: css`
+    transition: 0.2s ease-in-out;
     letter-spacing: -0.00375em;
     font-family: 'Pretendard';
     font-size: 1.4rem;
@@ -281,10 +284,35 @@ const mobileFonts = {
   `,
 };
 
-const theme: Pick<DefaultTheme, 'colors' | 'fonts' | 'editor' | 'mobileFonts'> = {
+const transitions = {
+  Expand: css`
+    position: relative;
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: scale(0.97);
+      transition: 0.15s;
+      opacity: 0;
+      border-radius: inherit;
+      background-color: ${({ theme }) => theme.colors.grey_700};
+      width: 100%;
+      height: 100%;
+      content: '';
+      pointer-events: none;
+    }
+    &:hover::before {
+      transform: none;
+      opacity: 0.1;
+    }
+  `,
+};
+
+const theme: Pick<DefaultTheme, 'colors' | 'fonts' | 'editor' | 'mobileFonts' | 'transitions'> = {
   colors,
   fonts,
   editor,
   mobileFonts,
+  transitions,
 };
 export default theme;
