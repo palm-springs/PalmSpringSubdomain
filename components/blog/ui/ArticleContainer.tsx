@@ -56,12 +56,12 @@ const ArticleContainer = (props: ArticleContainerProps) => {
   const categoryLiteralList = getLiteralCategoryList(categoryList);
 
   // props
-  const blogImgProps = { thumbnail, description };
+  const blogImgProps = { blogName, thumbnail, description };
   const articleProps = { articleList: articleListData, categoryLiteralList };
 
   // 아티클 X
   if (articleListData.length === 0) {
-    return <EmptyBlog isMobile={isMobile} blogName={blogName} {...blogImgProps} />;
+    return <EmptyBlog isMobile={isMobile} {...blogImgProps} />;
   }
 
   // 아티클 O

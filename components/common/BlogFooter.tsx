@@ -29,18 +29,11 @@ const BlogFooter = (props: BlogFooterProps) => {
     );
   };
 
-  if (isMobile)
-    return (
-      <FooterContainer className={isMobile ? 'mobile' : ''}>
-        <MobileFooterWrap>{footerMain()}</MobileFooterWrap>
-      </FooterContainer>
-    );
-  else
-    return (
-      <FooterContainer>
-        <FooterWrapper>{footerMain()}</FooterWrapper>
-      </FooterContainer>
-    );
+  return (
+    <FooterContainer className={isMobile ? 'mobile' : ''}>
+      <FooterWrapper>{footerMain()}</FooterWrapper>
+    </FooterContainer>
+  );
 };
 
 export default BlogFooter;
@@ -60,11 +53,7 @@ const FooterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 72rem;
-`;
-
-const MobileFooterWrap = styled(FooterWrapper)`
-  padding: 0 2rem;
+  width: 124rem;
 `;
 
 const CompanyName = styled.p`
@@ -100,10 +89,10 @@ const FooterContainer = styled.div`
   border-top: 1px solid ${({ theme }) => theme.colors.grey_300};
   background: #fafafa;
 
-  padding: 7.2rem 0 8.4rem 0;
+  padding: 7.2rem 2rem 8.4rem 2rem;
   width: 100%;
   &.mobile {
-    padding: 4rem 0 7.2rem 0;
+    padding: 4rem 2rem 7.2rem 2rem;
   }
 `;
 

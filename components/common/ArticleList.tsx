@@ -47,15 +47,22 @@ const ArticleList = (prop: ArticleListProp) => {
 export default ArticleList;
 
 const ArticleListContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 6rem;
-  width: 72rem;
-  min-height: 50rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 2.8rem;
+  grid-column-gap: 2.4rem;
+  width: calc(100% + 24px);
+  max-width: calc(124rem + 24px);
 
   &.mobile {
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 6rem;
     align-items: center;
 
-    width: 100vw;
+    width: 100%;
+  }
+  @media (max-width: 1280px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 2rem;
   }
 `;

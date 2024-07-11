@@ -27,14 +27,14 @@ const MobileArticle = (props: ArticleProps) => {
         </ArticleThumbnailContainer>
       )}
       <ArticleInfo>
-        <EditorInputTitle>{title}</EditorInputTitle>
-        <ArticleDescription>{description}</ArticleDescription>
         <DetailBox>
           {selectedCategory === 'home' && <CategoryBtn type="button">{articleCategory.categoryName}</CategoryBtn>}
           <ArticleDetail>{memberName}</ArticleDetail>
           <Bar>|</Bar>
           <ArticleDetail>{createdAt}</ArticleDetail>
         </DetailBox>
+        <EditorInputTitle>{title}</EditorInputTitle>
+        <ArticleDescription>{description}</ArticleDescription>
       </ArticleInfo>
     </ArticleContainer>
   );
@@ -44,8 +44,8 @@ export default MobileArticle;
 
 const ArticleThumbnailContainer = styled.div`
   position: relative;
-  margin-bottom: 1.2rem;
-  width: calc(100vw - 4.8rem);
+  margin-bottom: 1.4rem;
+  width: 100%;
 
   height: calc((100vw - 4.8rem) * 9 / 16);
 `;
@@ -61,7 +61,7 @@ const ArticleContainer = styled(Link)`
   align-items: flex-start;
   justify-content: center;
 
-  width: calc(100vw - 4.8rem);
+  width: 100%;
 `;
 
 const ArticleInfo = styled.article`
@@ -76,11 +76,10 @@ const EditorInputTitle = styled.article`
   ${({ theme }) => theme.mobileFonts.Title2};
   /* stylelint-disable-next-line value-no-vendor-prefix */
   display: -webkit-box;
-
-  margin-bottom: 0.4rem;
-
+  margin-top: 0.8rem;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.5;
   white-space: wrap;
   word-break: keep-all;
 
@@ -88,6 +87,9 @@ const EditorInputTitle = styled.article`
   -webkit-box-orient: vertical;
 
   color: ${({ theme }) => theme.colors.grey_900};
+
+  font-size: 2rem;
+  font-weight: 600;
 `;
 
 const ArticleDescription = styled.div`
@@ -95,15 +97,19 @@ const ArticleDescription = styled.div`
   /* stylelint-disable-next-line value-no-vendor-prefix */
   display: -webkit-box;
 
+  margin-top: 0.6rem;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.5;
   white-space: wrap;
   word-break: keep-all;
 
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 
-  color: ${({ theme }) => theme.colors.grey_900};
+  color: #8d96a1;
+  font-size: 1.4rem;
+  font-weight: 400;
 `;
 
 const ArticleDetail = styled.div`
@@ -123,8 +129,6 @@ const DetailBox = styled.div`
   display: flex;
   gap: 0.4rem;
   align-items: center;
-
-  margin-top: 1rem;
 `;
 
 const CategoryBtn = styled.button`

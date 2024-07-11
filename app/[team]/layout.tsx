@@ -30,7 +30,7 @@ const BlogHomeLayout = async ({ children, params }: { children: React.ReactEleme
   return (
     <>
       <BlogHeader logo={logo} blogName={blogName} navList={navList} isDeviceMobile={isDeviceMobile} />
-      <main style={{ overflowX: 'hidden' }}>{children}</main>
+      <main>{children}</main>
       <BlogFooter companyName={ownerName} companyDetail={ownerInfo} isDeviceMobile={isDeviceMobile} />
     </>
   );

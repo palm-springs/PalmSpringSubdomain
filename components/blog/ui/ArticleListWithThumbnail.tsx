@@ -24,13 +24,14 @@ interface ArticleListWithThumbnailProps {
   singleArticleDetail: Response<ContentProps> | null;
   isMobile: boolean;
   thumbnail: string | null;
+  blogName: string;
 }
 
 const ArticleListWithThumbnail = (props: ArticleListWithThumbnailProps) => {
-  const { articleList, categoryLiteralList, singleArticleDetail, isMobile, thumbnail, description } = props;
+  const { articleList, categoryLiteralList, singleArticleDetail, isMobile, blogName, thumbnail, description } = props;
   const { category } = useParams();
 
-  const blogImgProps = { description, thumbnail };
+  const blogImgProps = { blogName, description, thumbnail };
   const categoryName = decodeURI(category as string);
 
   const FilteredArticleList = articleList.filter(
@@ -72,7 +73,7 @@ const ArticleListWithThumbnail = (props: ArticleListWithThumbnailProps) => {
   };
 
   return (
-    <>
+    <MainContainer>
       {Thumbnail()}
       <CategoryBtnWrapper className={isMobile ? 'mobile' : ''} $thumbnail={thumbnail}>
         <CategoryBtnBar LiteralList={categoryLiteralList} isMobile={isMobile} />
@@ -80,12 +81,19 @@ const ArticleListWithThumbnail = (props: ArticleListWithThumbnailProps) => {
       <ArticleWrapper>
         <ArticleList articleList={category ? FilteredArticleList : articleList} isMobile={isMobile} />
       </ArticleWrapper>
-    </>
+    </MainContainer>
   );
 };
 
 export default ArticleListWithThumbnail;
 
+const MainContainer = styled.div`
+  padding: 0 4rem;
+  overflow-x: hidden;
+  @media (max-width: 768px) {
+    padding: 0 2rem;
+  }
+`;
 const ContentThumbnail = styled(Image)`
   border-radius: 1.6rem;
   object-fit: cover;
@@ -106,13 +114,12 @@ const ArticleWrapper = styled.section`
   align-items: center;
 
   margin-bottom: 11rem;
-  width: 100vw;
+  min-height: 50rem;
 `;
 
 const CategoryBtnWrapper = styled.div<{ $thumbnail: string | null }>`
   display: flex;
   justify-content: center;
-  width: 100vw;
 
   &.mobile {
     margin-top: ${({ $thumbnail }) => ($thumbnail ? 0 : '7.2rem')};
