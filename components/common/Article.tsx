@@ -58,39 +58,38 @@ export default Article;
 const ArticleThumbnailWrapperWrapper = styled.div`
   position: absolute;
   inset: 0px;
+  border-radius: inherit;
 `;
 const ArticleThumbnailWrapper = styled.div`
   position: relative;
+  border-radius: 0.8rem;
   padding-bottom: 60%;
   width: 100%;
+  ${({ theme }) => theme.outlines.Transparent};
 `;
 const ArticleThumbnailContainer = styled.div`
   position: relative;
-  border-radius: 8px;
   width: 100%;
   overflow: hidden;
 `;
 const ArticleThumbnail = styled(Image)`
-  outline: 1px solid rgba(0, 0, 0, 0.08);
-  outline-offset: -1px;
-  border-radius: 1.2rem;
+  border-radius: inherit;
   width: 100%;
   height: 100%;
   object-fit: cover;
 `;
 const ArticleMockThumbnail = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  outline: 1px solid rgba(0, 0, 0, 0.08);
-  outline-offset: -1px;
-  background: ${({ theme }) => theme.colors.grey_900};
+  align-items: flex-end;
+  justify-content: flex-start;
+  border-radius: inherit;
+  background: ${({ theme }) => theme.colors.grey_300};
   padding: 2.4rem;
   width: 100%;
   height: 100%;
-  text-align: center;
+  text-align: left;
   line-height: 1.5;
-  color: ${({ theme }) => theme.colors.grey_0};
+  color: ${({ theme }) => theme.colors.grey_900};
   font-family: 'Pretendard';
   font-size: 2rem;
   font-weight: 300;

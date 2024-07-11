@@ -284,6 +284,23 @@ const mobileFonts = {
   `,
 };
 
+const outlines = {
+  Transparent: css`
+    position: relative;
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      outline: 1px solid rgba(0, 0, 0, 0.08);
+      outline-offset: -1px;
+      border-radius: inherit;
+      width: 100%;
+      height: 100%;
+      content: '';
+    }
+  `,
+};
+
 const transitions = {
   Expand: css`
     position: relative;
@@ -308,11 +325,12 @@ const transitions = {
   `,
 };
 
-const theme: Pick<DefaultTheme, 'colors' | 'fonts' | 'editor' | 'mobileFonts' | 'transitions'> = {
+const theme: Pick<DefaultTheme, 'colors' | 'fonts' | 'editor' | 'mobileFonts' | 'transitions' | 'outlines'> = {
   colors,
   fonts,
   editor,
   mobileFonts,
   transitions,
+  outlines,
 };
 export default theme;
