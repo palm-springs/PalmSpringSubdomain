@@ -42,7 +42,7 @@ const MadeWithPalms = styled.p`
   cursor: default;
   line-height: normal;
   letter-spacing: -0.005rem;
-  color: #8c8c8c;
+  color: ${({ theme }) => theme.colors.grey_700};
   font-family: 'Pretendard';
   font-size: 1.2rem;
   font-weight: 400;
@@ -73,7 +73,7 @@ const CompanyDetail = styled.p`
   letter-spacing: -0.005rem;
   white-space: pre-line;
 
-  color: #8c8c8c;
+  color: ${({ theme }) => theme.colors.grey_700};
   font-family: 'Pretendard';
   font-size: 1.3rem;
   font-weight: 400;
@@ -87,7 +87,7 @@ const FooterContainer = styled.div`
   justify-content: center;
   margin-top: 4rem;
   border-top: 1px solid ${({ theme }) => theme.colors.grey_300};
-  background: #fafafa;
+  background: ${({ theme }) => theme.colors.grey_100};
 
   padding: 7.2rem 2rem 8.4rem 2rem;
   width: 100%;
@@ -100,7 +100,7 @@ const LandingPageLink = styled(Link)`
   text-decoration: underline;
   line-height: normal;
   letter-spacing: -0.005rem;
-  color: #8c8c8c;
+  color: ${({ theme }) => theme.colors.grey_700};
   font-family: 'Pretendard';
   font-size: 1.2rem;
   font-weight: 400;
