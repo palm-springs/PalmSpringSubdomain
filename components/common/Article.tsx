@@ -62,7 +62,7 @@ const ArticleThumbnailWrapperWrapper = styled.div`
 `;
 const ArticleThumbnailWrapper = styled.div`
   position: relative;
-  border-radius: 0.8rem;
+  border-radius: 1.2rem;
   padding-bottom: 60%;
   width: 100%;
   ${({ theme }) => theme.outlines.Transparent};
@@ -83,13 +83,13 @@ const ArticleMockThumbnail = styled.div`
   align-items: flex-end;
   justify-content: flex-start;
   border-radius: inherit;
-  background: ${({ theme }) => theme.colors.grey_300};
-  padding: 2.4rem;
+  background: ${({ theme }) => theme.colors.grey_800};
+  padding: 2.2rem 2.6rem;
   width: 100%;
   height: 100%;
   text-align: left;
   line-height: 1.5;
-  color: ${({ theme }) => theme.colors.grey_900};
+  color: ${({ theme }) => theme.colors.grey_0};
   font-family: 'Pretendard';
   font-size: 2rem;
   font-weight: 300;
