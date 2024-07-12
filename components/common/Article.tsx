@@ -25,17 +25,29 @@ const Article = (props: ArticleProps) => {
   return (
     <>
       <ArticleContainer href={`/${articleUrl}`} className={noHover ? '' : 'hover'}>
+        <ArticleThumbnailContainer>
+          <ArticleThumbnailWrapper>
+            <ArticleThumbnailWrapperWrapper>
+              {thumbnail ? (
+                <ArticleThumbnail src={thumbnail} alt="Article Thumbnail" width={228} height={170} />
+              ) : (
+                <ArticleMockThumbnail>
+                  <div>{title}</div>
+                </ArticleMockThumbnail>
+              )}
+            </ArticleThumbnailWrapperWrapper>
+          </ArticleThumbnailWrapper>
+        </ArticleThumbnailContainer>
         <ArticleInfo $thumbnail={thumbnail ?? ''}>
-          <EditorInputTitle className="title">{title}</EditorInputTitle>
-          <ArticleDescription className="description">{description}</ArticleDescription>
           <DetailBox>
             {selectedCategory === 'home' && <CategoryBtn>{articleCategory.categoryName}</CategoryBtn>}
             <ArticleDetail>{memberName}</ArticleDetail>
             <Bar>|</Bar>
             <ArticleDetail>{createdAt}</ArticleDetail>
           </DetailBox>
+          <EditorInputTitle className="title">{title}</EditorInputTitle>
+          <ArticleDescription className="description">{description}</ArticleDescription>
         </ArticleInfo>
-        {thumbnail && <ArticleThumbnail src={thumbnail} alt="Article Thumbnail" width={228} height={170} />}
       </ArticleContainer>
     </>
   );
@@ -43,22 +55,58 @@ const Article = (props: ArticleProps) => {
 
 export default Article;
 
-const ArticleThumbnail = styled(Image)`
-  border: 1px solid rgba(52, 58, 64, 0.1);
+const ArticleThumbnailWrapperWrapper = styled.div`
+  position: absolute;
+  inset: 0px;
+  border-radius: inherit;
+`;
+const ArticleThumbnailWrapper = styled.div`
+  position: relative;
   border-radius: 1.2rem;
-  width: 22.8rem;
-  height: 17rem;
+  padding-bottom: 60%;
+  width: 100%;
+  ${({ theme }) => theme.outlines.Transparent};
+`;
+const ArticleThumbnailContainer = styled.div`
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+`;
+const ArticleThumbnail = styled(Image)`
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+`;
+const ArticleMockThumbnail = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  border-radius: inherit;
+  background: ${({ theme }) => theme.colors.grey_800};
+  padding: 2.2rem 2.6rem;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  line-height: 1.5;
+  color: ${({ theme }) => theme.colors.grey_0};
+  font-family: 'Pretendard';
+  font-size: 2rem;
+  font-weight: 300;
 `;
 
 const ArticleContainer = styled(Link)`
+  ${({ theme }) => theme.transitions.Expand};
   display: flex;
-  gap: 3.2rem;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: flex-start;
+  border-radius: 12px;
+  padding: 1.2rem 1.2rem 1.6rem 1.2rem;
 
   width: 100%;
 
-  &.hover {
+  /* &.hover {
     transform: translateY(0.8rem);
     transition: 0.3s ease-in-out;
   }
@@ -71,53 +119,56 @@ const ArticleContainer = styled(Link)`
     .description {
       opacity: 0.8;
     }
-  }
+  } */
 `;
 
 const ArticleInfo = styled.article<{ $thumbnail: string }>`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding-top: 0.4rem;
-
-  width: ${({ $thumbnail }) => ($thumbnail ? '46rem' : '100%')};
 `;
 
 const EditorInputTitle = styled.article`
-  ${({ theme }) => theme.fonts.Heading2};
   /* stylelint-disable-next-line value-no-vendor-prefix */
   display: -webkit-box;
 
-  margin-bottom: 0.4rem;
+  margin-top: 1rem;
   width: 100%;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* text-overflow: ellipsis; */
+  line-height: 1.5;
   white-space: wrap;
   word-break: keep-all;
 
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-
   color: ${({ theme }) => theme.colors.grey_900};
+  font-family: 'Pretendard';
+  /* ${({ theme }) => theme.fonts.Heading2}; */
+  font-size: 2rem;
+  font-weight: 600;
+
+  /* -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; */
 `;
 
 const ArticleDescription = styled.div`
-  ${({ theme }) => theme.fonts.Body2_Regular};
+  /* ${({ theme }) => theme.fonts.Body2_Regular}; */
   /* stylelint-disable-next-line value-no-vendor-prefix */
   display: -webkit-box;
-
+  margin-top: 0.8rem;
   width: 100%;
-
-  overflow: hidden;
+  overflow-y: hidden;
   text-overflow: ellipsis;
+  line-height: 1.5;
   white-space: wrap;
   word-break: keep-all;
+  color: #8d96a1;
+  font-family: 'Pretendard';
 
-  -webkit-line-clamp: 2;
+  font-size: 1.4rem;
+
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 
-  color: ${({ theme }) => theme.colors.grey_900};
+  /* color: ${({ theme }) => theme.colors.grey_900}; */
 `;
 
 const ArticleDetail = styled.div`
@@ -137,9 +188,8 @@ const DetailBox = styled.div`
   display: flex;
   gap: 0.4rem;
   align-items: center;
-
-  margin-top: 1.7rem;
   width: 100%;
+  font-family: 'Pretendard';
 `;
 const CategoryBtn = styled.div`
   ${({ theme }) => theme.fonts.Body3_Regular};

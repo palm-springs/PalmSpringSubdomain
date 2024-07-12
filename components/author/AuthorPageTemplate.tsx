@@ -56,7 +56,8 @@ const AuthorArticle = styled.div`
   ${({ theme }) => theme.fonts.Heading3_Semibold};
 
   margin-bottom: 2.8rem;
-  width: 72rem;
+  width: 100%;
+  max-width: 124rem;
 
   color: ${({ theme }) => theme.colors.grey_900};
 
@@ -73,7 +74,7 @@ const AuthorPageTemplateContainer = styled.section`
   flex-direction: column;
   align-items: center;
 
-  padding: 6rem 0 12rem;
+  padding: 6rem 2rem 12rem 2rem;
   width: 100vw;
 
   &.mobile {
@@ -85,11 +86,11 @@ const AuthorPageTemplateContainer = styled.section`
 const Line = styled.div`
   margin: 6rem 0;
   background-color: ${({ theme }) => theme.colors.grey_300};
-  width: 72rem;
+  width: 100%;
+  max-width: 124rem;
   height: 1px;
 
   &.mobile {
     margin: 4rem 0;
-    width: calc(100vw - 4.8rem);
   }
 `;

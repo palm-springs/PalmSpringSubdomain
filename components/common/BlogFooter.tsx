@@ -29,18 +29,11 @@ const BlogFooter = (props: BlogFooterProps) => {
     );
   };
 
-  if (isMobile)
-    return (
-      <FooterContainer className={isMobile ? 'mobile' : ''}>
-        <MobileFooterWrap>{footerMain()}</MobileFooterWrap>
-      </FooterContainer>
-    );
-  else
-    return (
-      <FooterContainer>
-        <FooterWrapper>{footerMain()}</FooterWrapper>
-      </FooterContainer>
-    );
+  return (
+    <FooterContainer className={isMobile ? 'mobile' : ''}>
+      <FooterWrapper>{footerMain()}</FooterWrapper>
+    </FooterContainer>
+  );
 };
 
 export default BlogFooter;
@@ -49,7 +42,7 @@ const MadeWithPalms = styled.p`
   cursor: default;
   line-height: normal;
   letter-spacing: -0.005rem;
-  color: #8c8c8c;
+  color: ${({ theme }) => theme.colors.grey_700};
   font-family: 'Pretendard';
   font-size: 1.2rem;
   font-weight: 400;
@@ -60,11 +53,7 @@ const FooterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 72rem;
-`;
-
-const MobileFooterWrap = styled(FooterWrapper)`
-  padding: 0 2rem;
+  width: 124rem;
 `;
 
 const CompanyName = styled.p`
@@ -84,7 +73,7 @@ const CompanyDetail = styled.p`
   letter-spacing: -0.005rem;
   white-space: pre-line;
 
-  color: #8c8c8c;
+  color: ${({ theme }) => theme.colors.grey_700};
   font-family: 'Pretendard';
   font-size: 1.3rem;
   font-weight: 400;
@@ -98,12 +87,12 @@ const FooterContainer = styled.div`
   justify-content: center;
   margin-top: 4rem;
   border-top: 1px solid ${({ theme }) => theme.colors.grey_300};
-  background: #fafafa;
+  background: ${({ theme }) => theme.colors.grey_100};
 
-  padding: 7.2rem 0 8.4rem 0;
+  padding: 7.2rem 2rem 8.4rem 2rem;
   width: 100%;
   &.mobile {
-    padding: 4rem 0 7.2rem 0;
+    padding: 4rem 2rem 7.2rem 2rem;
   }
 `;
 
@@ -111,7 +100,7 @@ const LandingPageLink = styled(Link)`
   text-decoration: underline;
   line-height: normal;
   letter-spacing: -0.005rem;
-  color: #8c8c8c;
+  color: ${({ theme }) => theme.colors.grey_700};
   font-family: 'Pretendard';
   font-size: 1.2rem;
   font-weight: 400;

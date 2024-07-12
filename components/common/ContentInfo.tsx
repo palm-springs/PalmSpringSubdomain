@@ -120,6 +120,7 @@ export default ContentInfo;
 const WriterBox = styled.article`
   display: flex;
   align-items: center;
+  transition: 0.15s ease-in-out;
 
   &:hover {
     opacity: 0.8;

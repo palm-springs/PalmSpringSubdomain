@@ -35,18 +35,22 @@ const BlogHeader = (props: HeaderProps) => {
 
   if (isMobile)
     return (
-      <BlogHeaderContainer className="mobile" $ifscrollpositionzero={ifScrollPositionZero}>
-        <HeaderLogo logo={logo} blogName={blogName} />
-        <BlurBackground className={isMenuOpen ? 'blur' : ''} onClick={sidebarToggle} />
-        <SideBar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} navList={navList} />
-        <MenuIcon type="button" onClick={sidebarToggle} />
+      <BlogHeaderContainer $ifscrollpositionzero={ifScrollPositionZero}>
+        <BlogHeaderWrapper className="mobile">
+          <HeaderLogo logo={logo} blogName={blogName} />
+          <BlurBackground className={isMenuOpen ? 'blur' : ''} onClick={sidebarToggle} />
+          <SideBar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} navList={navList} />
+          <MenuIcon type="button" onClick={sidebarToggle} />
+        </BlogHeaderWrapper>
       </BlogHeaderContainer>
     );
   else
     return (
       <BlogHeaderContainer $ifscrollpositionzero={ifScrollPositionZero}>
-        <HeaderLogo logo={logo} blogName={blogName} />
-        <BlogNav blogName={blogName} navList={navList} />
+        <BlogHeaderWrapper>
+          <HeaderLogo logo={logo} blogName={blogName} />
+          <BlogNav blogName={blogName} navList={navList} />
+        </BlogHeaderWrapper>
       </BlogHeaderContainer>
     );
 };
@@ -72,18 +76,24 @@ const BlogHeaderContainer = styled.div<{ $ifscrollpositionzero: boolean }>`
   position: fixed;
   top: 0;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   transition: height 300ms cubic-bezier(0.31, 0.27, 0.15, 0.99) 0s;
   z-index: 10;
   border-bottom: 1px solid ${({ theme }) => theme.colors.grey_300};
 
   background: ${({ theme }) => theme.colors.grey_0};
-  padding: 0 max(calc((100vw - 100rem) / 2), 2.4rem);
   width: 100vw;
-  min-width: 72rem;
   height: 6rem;
   ${({ $ifscrollpositionzero }) => $ifscrollpositionzero && `height:7.2rem;border-color:transparent;`}
+`;
 
+const BlogHeaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4rem;
+  width: 100%;
+  max-width: 144rem;
   &.mobile {
     padding: 0 1.6rem 0 2.4rem;
     min-width: 0;
