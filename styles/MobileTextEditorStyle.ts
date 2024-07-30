@@ -206,7 +206,7 @@ export const MobileTextEditorStyle = styled.div`
     }
 
     /* 헤딩 */
-    h1 {
+    h2 {
       ${({ theme }) => theme.mobileFonts.Markdown_H1};
       margin: 4rem 0 0.8rem;
       width: 100%;
@@ -217,7 +217,7 @@ export const MobileTextEditorStyle = styled.div`
       }
     }
 
-    h2 {
+    h3 {
       ${({ theme }) => theme.mobileFonts.Markdown_H2};
       margin: 3.2rem 0 0.8rem;
       width: 100%;
@@ -228,7 +228,7 @@ export const MobileTextEditorStyle = styled.div`
       }
     }
 
-    h3 {
+    h4 {
       ${({ theme }) => theme.mobileFonts.Markdown_H3};
       margin: 2.4rem 0 0.8rem;
       width: 100%;

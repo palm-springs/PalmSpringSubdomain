@@ -268,7 +268,7 @@ export const TextEditorStyle = styled.div`
     }
 
     /* 헤딩 */
-    h1 {
+    h2 {
       ${({ theme }) => theme.editor.Edit_h1};
       margin: 5.6rem 0 1.2rem 0;
       width: 100%;
@@ -279,7 +279,7 @@ export const TextEditorStyle = styled.div`
       }
     }
 
-    h2 {
+    h3 {
       ${({ theme }) => theme.editor.Edit_h2};
       margin: 4rem 0 1.2rem 0;
       width: 100%;
@@ -290,7 +290,7 @@ export const TextEditorStyle = styled.div`
       }
     }
 
-    h3 {
+    h4 {
       ${({ theme }) => theme.editor.Edit_h3};
       margin: 2.4rem 0 1.2rem;
       width: 100%;
