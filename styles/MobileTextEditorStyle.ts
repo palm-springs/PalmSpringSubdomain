@@ -206,6 +206,18 @@ export const MobileTextEditorStyle = styled.div`
     }
 
     /* 헤딩 */
+
+    h1 {
+      ${({ theme }) => theme.mobileFonts.Markdown_H1};
+      margin: 4rem 0 0.8rem;
+      width: 100%;
+      color: ${({ theme }) => theme.colors.grey_950};
+      * {
+        ${({ theme }) => theme.mobileFonts.Markdown_H1};
+        color: ${({ theme }) => theme.colors.grey_950};
+      }
+    }
+
     h2 {
       ${({ theme }) => theme.mobileFonts.Markdown_H1};
       margin: 4rem 0 0.8rem;

@@ -268,6 +268,18 @@ export const TextEditorStyle = styled.div`
     }
 
     /* 헤딩 */
+
+    h1 {
+      ${({ theme }) => theme.editor.Edit_h1};
+      margin: 5.6rem 0 1.2rem 0;
+      width: 100%;
+      color: ${({ theme }) => theme.colors.grey_950};
+      * {
+        ${({ theme }) => theme.editor.Edit_h1};
+        color: ${({ theme }) => theme.colors.grey_950};
+      }
+    }
+
     h2 {
       ${({ theme }) => theme.editor.Edit_h1};
       margin: 5.6rem 0 1.2rem 0;
